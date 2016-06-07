@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN"> 
+<head>
+	<meta charset="utf-8">
+	<title>没有文艺范的数据挖掘工| MENBIN'S Blog</title>
+	<meta name="description" content="一个整天不务正业的硕士研究生，对各种技术以及生活充满渴望，希望通过自己的努力在大数据时代下能够力挽狂澜，激扬文字！">
+	<meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 国产高速渲染 -->
+	<meta name="renderer" content="webkit">
+	<link rel="shortcut icon" href="./img/favicon.ico">	
+	<link rel="canonical" href="./weather.html">
+	<link rel="alternate" type="application/rss+xml" title="" href="./feed.xml">
+	<!-- Le styles -->
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/font-awesome.min.css" rel="stylesheet">
+	<link href="./css/syntax.css" rel="stylesheet">
+	<link href="./css/style.css" rel="stylesheet">
+</head>
+
+<body ontouchstart="">
+
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://binmen.github.io/blog">MENBIN</a>
+        </div>
+
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./index.html">Home</a></li>
+					<li><a href="./categories.html">Categories</a></li>
+					<li><a href="">Tags</a></li>
+					<li><a href="">About Me</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+	
+	var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+	 *
+	 * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+	
+	<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('./img/about.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>About Me</h1>
+                    <h2 class="subheading">一个整天不务正业的硕士研究生，对各种技术以及生活充满渴望，希望通过自己的努力在大数据时代下力挽狂澜，激扬文字！</h2>
+                    <span class="meta">Posted by MenBin on May 18, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<article>
+<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+
+		<!-- Post Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+				
+    		  <h2 id="section">这就是我！</h2>
+              <p><img class="img-responsive" src="./img/me1.png" alt="me" /></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="highlighter-rouge">这就是我！</code>没有任何文艺范的数据挖掘工；长得磕碜，对技术充满渴望；整天不务正业，至今没有任何建树；微懂统计知识，
+喜欢数据分析与挖掘，但是不精通；单身狗一枚（哈哈），欢迎骚扰！</p>
+<p>联系方式：<a href="http://weibo.com/u/2315922313"><img src="./img/ico_05.png" /></a><a href="mailto:960022813@qq.com"><img src="./img/ico_07.png"/></a></p>
+
+<h2 id="section-1">基本信息</h2>
+<p><kbd>学历信息</kbd></p>
+<ol>
+  <li>本科院校：山东科技大学；专业：统计学</li>
+  <li>现在就读：东北财经大学；方向：市场调查与数据分析</li>
+  <li>年龄：保密；性别：保密（哈哈）</li>
+  <li><code class="highlighter-rouge">博客：</code><a href="http：//binmen.github.io/blogs">MENBIN'S BLOG</a></li>
+</ol>
+
+<p><kbd>擅长领域</kbd></p>
+<ul>
+  <li>文本挖掘、机器学习、统计建模</li>
+  <li>统计软件：R、SAS、SPSS、EXCEL、MATLAB等</li>
+  <li>其他：SQL、JAVA、网页制作</li>
+</ul>
+<p><kbd>比赛情况</kbd></p>
+<ul>
+  <li>参加拍贷“魔镜杯”数据产品开发大赛，在复赛中获得第七名的成绩，作品名称：<a href="http://binmen.github.io/Simple">SIMPLE BUT NOT CRUDE。</a></li>
+  <li>参加“汇丰杯”2015年中国高校SAS数据分析大赛，获得辽宁赛区第三名，全国前50强。</li>
+</ul>
+<h2 id="section-2">建立博客初衷</h2>
+<p>希望跟志同道合的人在数据分析的道路上共同进步！</p>
+
+<hr><ul class="tag_box list-unstyled list-inline"</ul></hr>
+				<p class="text-right">
+				<a href="./index.html">MENBIN</a>
+				<span class="time">
+				<time><span class="label label-success">2016-05-18</span></time>
+				</br>地点：中国--大连--东财
+				</span></p>
+		
+        </div>
+    </div>
+</article>
+
+<!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>友情链接</h5>
+                <ul class="list-inline">
+                    
+                       <li><a href="http://benmin.github.io/blog">数据泥瓦匠</a></li>
+                    
+                        <li><a href="https://github.com/Huxpro/huxpro.github.io">Hux-模板来源</a></li>
+                    
+                        <li><a href="http://brucezhaor.github.io/">brucezhaor</a></li>
+						
+						<li><a href="http://binmen.github.io/Simple">团队作品</a></li>
+                    
+                    
+                </ul>
+                
+            </div>
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var _user = 'menbin';
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options.placement = 'left';
+        anchors.add('h2,h3');
+		anchors.remove('.subheading');
+    })
+</script>
+
+
+<!-- mathjax -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+<!-- for R highlight -->
+<script type="text/javascript" src="./js/r-highlight.js"></script>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                 <!--站长统计-->
+                 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259231356'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259231356%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	 
+                <p class="copyright text-muted">
+                   &copy;2016.MenBin Copyright Reserved. | Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://www.bootcss.com/">Bootstrap</a>.Theme by <a href="http://huangxuan.me">Hux</a> and <a href="http://brucezhaor.github.io/">brucezhaor</a>.
+					<br>
+					<span class="label label-primary label-md"><strong>转载请标明作者和出处</strong></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/blog.js"></script>
+	
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+	
+	<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);  
+    })
+</script>
+
+<!-- back-to-top -->
+<div id="back-top">
+  <a href="#section" data-toggle="tooltip" data-placement="top" title="top">
+	<i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script>
+	$('#back-top').hide();
+	$(document).ready(function () {
+	$(window).scroll(function () {
+    if ($(this).scrollTop() > 250) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+	
+</body>
+</html>

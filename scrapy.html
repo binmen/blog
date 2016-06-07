@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN"> 
+<head>
+	<meta charset="utf-8">
+	<title> Scrapy在windows环境下的安装与配置 | MENBIN'S Blog</title>
+	<meta name="description" content="Python在进行爬虫时，除了使用beautifulsoup与re等之外，还有一个专门的利器可以使用，那就是被称为“小刮刮”的Scrapy">
+	<meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 国产高速渲染 -->
+	<meta name="renderer" content="webkit">
+	<link rel="shortcut icon" href="./img/favicon.ico">	
+	<link rel="canonical" href="./weather.html">
+	<!-- Le styles -->
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/font-awesome.min.css" rel="stylesheet">
+	<link href="./css/style.css" rel="stylesheet">	
+</head>
+
+<body onload="prettyPrint()">
+
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://binmen.github.io/blog">MENBIN</a>
+        </div>
+
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./index.html">Home</a></li>
+					<li><a href="./categories.html">Categories</a></li>
+					<li><a href="">Tags</a></li>
+					<li><a href="./About.html">About Me</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+	
+	var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+	 *
+	 * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+	
+	<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('./img/py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1> Scrapy在windows环境下的安装与配置</h1>
+                    <h2 class="subheading">本文将介绍Scrapy的安装与配置。</h2>
+                    <span class="meta">Posted by MenBin on May 19, 2016</span>
+					
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<article>
+<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+
+		<!-- Post Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+		<h2 class="no_toc" id="section">目录</h2>
+        <ul id="markdown-toc">
+        <li><a href="#section" id="markdown-toc-section">Python下载以及环境配置</a></li>
+        <li><a href="#section-1" id="markdown-toc-#section-1">安装scrapy前的环境搭建</a>
+        <li><a href="#section-2" id="markdown-toc-#section-2">安装scrapy</a></li>
+        </ul>
+ <hr><ul class="tag_box list-unstyled list-inline"</ul></hr>
+				
+    			<h2 id="section">Python下载以及环境配置</h2>
+
+<p>首先我们必须先下载Python软件，在这里我选用的是<a href="http://www.python.org/ftp/python/2.7.3/python-2.7.3.msi">Python2.7.3</a>版本。</p>
+<ol>
+<li>安装python，我选择的安装目录：d:\Python27（这个可以随便选择）</li>
+<li>添加环境变量，在桌面打开右键点击计算机，进入如下界面，然后在在变量值里面加入<code class="highlighter-rouge">d：\python27;d:\python27\scripts;</code></li>
+<img src="./img/p1.png"/>
+<li>验证Python环境是否配置好，同时按住键盘上的<kbd>win+r</kbd>打开如下窗口，输入cmd，进入dos窗口，在命令符后输入：python，如果出现下图就表示Python已经配置好</li>
+<img src="./img/p2.png"/>
+</ol>
+<h2 id="section-1">安装scrapy前的环境搭建</h2>
+
+<p>安装Twisted模块</p>
+<ol>
+  <li><a href="http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.exe">setuptools</a>的安装,安装过程略。</li>
+</ol>
+<p>安装Zope.Interface</p>
+<ol>
+  <li><a href="http://pypi.python.org/packages/2.7/z/zope.interface/zope.interface-4.0.1-py2.7-win32.egg">Zope.Interface</a>的安装,安装过程如下：</li>
+  <li>将下载得到的zope.interface复制到D:\Python27\Scripts文件夹下,打开cmd，进入dos窗口，输入以下命令：</li>
+  <img src="./img/p3.png"/>
+  <li>验证是否安装成功,如果输入：<kbd>import  zope.interface</kbd>没有报错就表示已经安装成功.</li>
+</ol>
+<p>安装Twisted</p>
+<ol>
+  <li><a href="http://pypi.python.org/packages/2.7/T/Twisted/Twisted-12.1.0.win32-py2.7.msi">Twisted</a>的安装,安装过程如下：</li>
+  <li>将下载得到的zope.interface复制到D:\Python27\Scripts文件夹下,打开cmd，进入dos窗口，输入以下命令：</li>
+</ol>
+<p>安装w3lib</p>
+<ol>
+  <li><a href="http://pypi.python.org/packages/source/w/w3lib/w3lib-1.2.tar.gz">w3lib</a>的安装,安装过程如下：</li>
+  <li>将下载得到的w3lib文件夹拷贝到D:\Python27文件夹下</li>
+  <li>同样打开cmd，进入dos窗口，在命令符后输入如下命令：</li>
+  <img src="./img/p4.png"/>
+  <li>验证是否安装成功,如果输入：<kbd>import  w3lib</kbd>没有报错就表示已经安装成功.</li>
+</ol>
+<p>安装libxml2</p>
+<ol>
+  <li><a href="http://users.skynet.be/sbi/libxml-python/binaries/libxml2-python-2.7.7.win32-py2.7.exe">libxml2</a>的安装,安装过程略</li>
+</ol>
+<p>安装pyOpenSSL</p>
+<ol>
+  <li><a href="http://pypi.python.org/packages/2.7/p/pyOpenSSL/pyOpenSSL-0.13.winxp32-py2.7.msi">pyOpenSSL</a>的安装,安装过程略</li>
+</ol>
+<h2 id="section-2">安装scrapy</h2>
+<ol>
+  <li><a href="http://pypi.python.org/packages/source/S/Scrapy/Scrapy-0.14.4.tar.gz">Scrapy</a>的下载。</li>
+  <li>首先将下载得到的Scrapy拷贝到D:\Python27文件夹下</li>
+  <li>同样打开cmd，进入dos窗口，在命令符后输入如下命令：</li>
+  <img src="./img/p5.png"/>
+  <li>验证是否安装成功,如果输入：<kbd>scrapy</kbd>没有报错就表示已经安装成功.</li>
+</ol>
+<p>以上就是安装Scrapy的全过程了，赶紧用它抓取数据

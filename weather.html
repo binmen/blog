@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN"> 
+<head>
+	<meta charset="utf-8">
+	<title>PYTHON制作天气预报程序 | MENBIN'S Blog</title>
+	<meta name="description" content="使用python正则表达式进行数据抓取，主要是PM2.5网站上的数据,然后对数据进行处理后，利用wxpython制作可视化程序，
+           然后利用pyinstall软件进行程序打包，从而设计出一款交互良好的软件。">
+	<meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 国产高速渲染 -->
+	<meta name="renderer" content="webkit">
+	<link rel="shortcut icon" href="./img/favicon.ico">	
+	<link rel="canonical" href="./weather.html">
+	<!-- Le styles -->
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/font-awesome.min.css" rel="stylesheet">
+	<link href="./css/style.css" rel="stylesheet">
+</head>
+
+<body ontouchstart="">
+
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://binmen.github.io/blog">MENBIN</a>
+        </div>
+
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./index.html">Home</a></li>
+					<li><a href="./categories.html">Categories</a></li>
+					<li><a href="">Tags</a></li>
+					<li><a href="./About.html">About Me</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+	
+	var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+	 *
+	 * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+	
+	<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('./img/w.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>PYTHON制作天气预报程序</h1>
+                    <h2 class="subheading">使用python进行数据抓取，通过wxpython进行数据可视化处理，从而达到较好的人机交互效果.</h2>
+                    <span class="meta">Posted by MenBin on May 19, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<article>
+<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+
+		<!-- Post Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+				
+    			<h2 id="section">初始工作</h2>
+
+<p>在进行天气预报程序制作之前，首先我们必须先下载python，这里推荐使用<a href="./download/python-2.7.9.msi">python2.7.9</a>，因为python 3.0以上的版本不支持wxpython，因此没法使用此模块进行可视化处理。</p>
+
+<p>除此之外，我们还需要下载<a href="./download/pyinstaller.zip">pyinstaller</a>对程序进行打包，然后制作一款可视化良好的软件。</p>
+
+<h2 id="section-1">基础知识介绍</h2>
+
+<p>在进行天气预报程序制作之前必须具备以下基础知识：</p>
+
+<ol>
+  <li><code class="highlighter-rouge">Dos</code>窗口命令的使用</li>
+  <li>正则表达式的使用</li>
+  <li><code class="highlighter-rouge">Wxpython</code>基本知识</li>
+  <li><code class="highlighter-rouge">Pyinstaller</code>打包知识</li>
+</ol>
+<h2 id="section-2">详细代码</h2>
+<p>（1）首先我们利用python中的<code class="highlighter-rouge">BeautifulSoup</code>与</a><code class="highlighter-rouge">re</code>模块将数据从<a href="http://www.pm25.com/">http://www.pm25.com网站</a>上抓取下来，注意
+这里要用<code class="highlighter-rouge">utf-8</code>进行编码，不然会出现乱码情形，到此我们可以获得我们所需的数据.</a></p>
+<li>getweather.py</li>
+<pre>
+# -*- coding: UTF-8 -*-  
+from BeautifulSoup import BeautifulSoup    # For processing HTML  
+from bs4 import BeautifulSoup
+import re
+from urllib import urlopen  
+import sys
+from time import ctime
+reload(sys) 
+sys.setdefaultencoding('utf-8')  
+ 
+class WeatherInfo:  
+    """Weather class"""  
+    def __init__(self,site):  
+        self.site = site  
+        return  
+      
+    def getweather(self):  
+        """Get the weather information from the Internet"""  
+        text = urlopen(self.site).read()    #Get the source code of the site  
+        soup = BeautifulSoup(text)    #Get the soup  
+        city = soup.find(class_ = 'bi_loaction_city')   # 城市名称
+        aqi = soup.find("a",{"class","bi_aqiarea_num"})  # AQI指数
+        quality = soup.find("p",class_='bi_aqiarea_right')  # 空气质量等级
+        result = soup.find("div",class_ ='bi_aqiarea_bottom')   # 空气质量描述
+        tianqi = soup.find("p",class_='bi_info_weather')
+        tim= re.compile('数据来源：中国环境监测总站&nbsp;&nbsp;&nbsp;&nbsp;最后更新：(.*)</p>')
+        img1= re.compile('src="http://p1.qhimg.com/d/_hao360/weather/(.*)png" title=')
+        a = city.get_text()
+        b = aqi.get_text()
+        c=quality.get_text()
+        cc='空气质量等级'+c
+        d = result.get_text()
+        e=tianqi.get_text()
+        timee= tim.findall(text)[0]
+        time=u'更新时间： '+timee
+        img2= img1.findall(text)[0]
+        weather=[a,img2,time,d,cc,b,e]
+        return  weather  
+if __name__ == '__main__':
+    myWeather = WeatherInfo('http://www.pm25.com/dalian.html')
+    myWeather.getweather()
+
+</pre>
+<p>（2）然后，我们就要对数据进行可视化处理，在这里我们选用wxpython进行可视化处理。</p>
+<li>myframe.py</li>
+<pre><#! /usr/bin/env python
+#coding=utf-8
+import wx
+from GetWeather import WeatherInfo
+ 
+#todayInfo=u"12月8日星期四 小雨转多云7℃/-1℃ 北风5-6级 img/07.gif img/01.gif".split()
+#daysInfo=[todayInfo,todayInfo,todayInfo,todayInfo]
+        
+class MyApp(wx.App):
+    """应用程序类wx.App的子类"""
+    def __init__(self, title, sText):    #重构构造方法，其中title、sText分别是传递给主窗口的标题参数和状态栏参数
+        wx.App.__init__(self)   #调用wx.App的构造方法
+        frame = MyFrame(title, sText)   #创建主窗口对象
+        frame.Show(True)    #显示主窗口
+        
+class MyFrame(wx.Frame):
+    def __init__(self, title, sText):
+        wx.Frame.__init__(self, None, -1, title=title, size=(500,500))
+        self.panel = wx.Panel(self)
+        stBar = self.CreateStatusBar()  #创建状态栏
+        stBar.SetStatusText(sText)  #状态栏显示发布时间
+     
+        hdLeft = self.LayoutHeadLeft(todayInfo)
+        hdRight = self.LayoutHeadRight()
+        head = self.LayoutHead(hdLeft, hdRight)
+        days = self.LayoutDaysWeather(daysInfo)
+        sizer = self.LayoutPanel(head,days)
+        
+        self.panel.SetSizer(sizer)
+        sizer.Fit(self)
+        sizer.SetSizeHints(self)
+        
+    def LayoutHeadLeft(self, todayInfo):
+        tLbl = wx.StaticText(self.panel, -1, label=todayInfo)
+        
+        #从文件载入图像
+        img1 = wx.Image("C:/Users/Administrator/Desktop/TIANQI/img/a_" +todayInfoo+"gif",wx.BITMAP_TYPE_GIF)
+       
+        
+        #转换为静态图像控件
+        sb1 = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(img1))
+        
+        
+        #使用GridBagSizer来放置两个图片和两个文本控件
+        GBSizer = wx.GridBagSizer(vgap=5, hgap=5)   #Grid之间水平、竖直方向间距都是5个像素
+        GBSizer.Add(sb1, pos=(0, 0), span=(1, 1), flag=0)   #天气图片1，放置在第1行第1列，占一行一列
+        
+        GBSizer.Add(tLbl, pos=(1, 0), span=(1, 2), flag=0)  #天气文字信息，放置在第2行第1列，占一行两列
+                
+        #再使用Static Box Sizer来放置上面的GridBagSizer
+        sbox = wx.StaticBox(self.panel, -1,u'天气情况')        
+        sbsizer = wx.StaticBoxSizer(sbox, wx.VERTICAL)
+        sbsizer.Add(GBSizer,0, wx.ALL, 2)
+        
+        return sbsizer
+    
+    def LayoutHeadRight(self):
+        tLbl = wx.StaticText(self.panel, -1, label=u'版权所有')
+        tLb2 = wx.StaticText(self.panel, -1, label=u'Powered BY MB')
+        GBSizer = wx.GridBagSizer(vgap=5, hgap=5)   #Grid之间水平、竖直方向间距都是5个像素
+        GBSizer.Add(tLbl, pos=(1, 0), span=(1, 1), flag=0)  #天气文字信息，放置在第2行第1列，占一行两列       
+        GBSizer.Add(tLb2, pos=(2, 0), span=(1, 1), flag=0)  #天气文字信息，放置在第2行第1列，占一行两列
+                
+        #再使用Static Box Sizer来放置上面的GridBagSizer
+        sbox = wx.StaticBox(self.panel, -1,'')        
+        sbsizer = wx.StaticBoxSizer(sbox, wx.VERTICAL)
+        sbsizer.Add(GBSizer,0, wx.ALL, 2)
+        
+        return sbsizer
+    def LayoutHead(self, headLeft,headRight):
+        
+        box = wx.BoxSizer(wx.HORIZONTAL)    #使用水平BoxSizer放置今日天气信息和3个按钮
+        box.Add(headLeft, 1, flag=wx.EXPAND)
+        box.Add(headRight, flag=wx.EXPAND)
+        
+        return box
+    def LayoutDayWeather(self, dayInfo):
+       
+        #两个静态文本控件
+        dLbl = wx.StaticText(self.panel, -1, label=dayInfo)
+       #wLbl=wx.StaticText(self.panel,-1,label=todayInfo[2])
+                
+        
+                
+        #使用GridBagSizer来放置两个图片和两个文本控件
+        GBSizer = wx.GridBagSizer(vgap=5, hgap=5)
+        GBSizer.Add(dLbl, pos=(0, 0), span=(2,2), flag=wx.EXPAND)
+        
+        
+        return GBSizer
+    
+    def LayoutDaysWeather(self, daysInfo):
+        """使用竖直方向的StaticBoxSizer放置未来4天的天气信息"""
+        sbox = wx.StaticBox(self.panel, -1, u"PM2.5情况")
+        sbsizer = wx.StaticBoxSizer(sbox, wx.VERTICAL)
+        for dayInfo in daysInfo:
+            sz = self.LayoutDayWeather(dayInfo)
+            sbsizer.Add(sz, flag=wx.EXPAND)
+        return sbsizer
+    
+    def LayoutPanel(self, head, days):
+        """使用竖直方向的BoxSizer放置窗口上半部分内容和下半部分内容"""
+        bsizer = wx.BoxSizer(wx.VERTICAL)
+        bsizer.Add(head, flag=wx.EXPAND)
+        bsizer.Add(days, flag=wx.EXPAND)
+        return bsizer
+
+
+if __name__ == "__main__":
+
+   
+    wInfo = WeatherInfo('http://www.pm25.com/dalian.html').getweather()
+    #发布时间
+    waysInfo =wInfo[5]
+    
+    wTitle = wInfo[0]   #天气预报
+    wTime = wInfo[2]    #发布时间
+    todayInfo = wInfo[6]
+    todayInfoo = wInfo[1]  #今日天气信息
+    daysInfo = wInfo[3:6]  
+    app = MyApp(wTitle, wTime)  #应用程序类的一个实例
+    app.MainLoop()  #进入主循环
+
+   
+</pre>
+<p>(3)这样，我们就可以以GUI的形式看到天气数据了，到这，基本工作已经完成;剩下的就是要对程序进行封装，这里我们采用<code class="highlighter-rouge">pyinstaller</code>进行打包，打包命令如下：</p>
+<ul>
+  <li>首先打开dos窗口，按键盘上的<kbd>win+r</kbd>，然后输入cmd,点击确定</li>
+<li>命令提示符cd到需要打包的文件的目录</li>
+<li>直接在命令提示符中输入pyinstaller  -F  MyFrame.py 注意F要大些，然后<kbd>Enter</kbd>；</li>
+<li>打包成功后会出现两个文件夹，其中一个就是所需要的exe文件</li>
+<li>注：若是gui文件可以在输入pyinstaller -F -w文件名.py 其中w是小写，意思就是没有命令行窗口，
+默认的是-c有命令行窗口，当然一般的文件也可以-w，这样命令行窗口就没有了。</li>
+</ul>
+<h2 id="section-3">最后为您奉上天气预报软件。</h2>
+<p>代码以及软件下载：<a href="./download/weather.zip">天气预报</a>，仅供交流，请不要用于任何商业目的。</p>	
+<img src="./img/weather.jpg" />	
+<hr><ul class="tag_box list-unstyled list-inline"</ul></hr>
+				<p class="text-right">
+				<a href="./index.html">MENBIN</a>
+				<span class="time">
+				<time><span class="label label-primary label-md"><strong>2016-05-19</strong></span></time>
+				</br>地点：中国--大连--东财
+				</span>
+				</p>
+                				
+					<hr>					
+					<ul class="tag_box list-unstyled list-inline">
+					</ul>
+					<hr>
+					
+                <!-- 多说 Share start -->
+				<div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="./weather"
+                    data-title="PYTHON制作天气预报程序"
+                    data-url="http://binmen.github.io/blogs/weather"
+                    data-content="使用python正则表达式进行数据抓取，主要是PM2.5网站上的数据,然后对数据进行处理后，利用wxpython制作可视化程序，
+                       然后利用pyinstall软件进行程序打包，从而设计出一款交互良好的软件。" >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                    <ul class="pager">
+                <!--如果可以向前翻页，<li class="previous  disabled"><a href="/blog/2016/02/25/git-junior/" data-toggle="tooltip" data-placement="top" title="Git进阶1">-->
+					 <li class="previous"><a href="./scrapy.html" data-toggle="tooltip" data-placement="top" title="Scrapy在windows环境下的安装与配置"> PREVIOUS</br>Scrapy在windows环境下的安装与配置</a></li>
+		            <li class="next"><a href="./biaobai.html" data-toggle="tooltip" data-placement="top" title="“5.20” 程序员这样表白（转载）"> Next</br>"5.20” 程序员这样表白</a></li>
+                </ul> 
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="./weather"
+                        data-title="PYTHON制作天气预报程序"
+                        data-url="http://binmen.github.io/blogs/weather/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+            </div>
+    </div>
+		<!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>友情链接</h5>
+                <ul class="list-inline">
+                    
+                       <li><a href="http://benmin.github.io/blog">数据泥瓦匠</a></li>
+                    
+                        <li><a href="https://github.com/Huxpro/huxpro.github.io">Hux-模板来源</a></li>
+                    
+                        <li><a href="http://brucezhaor.github.io/">brucezhaor</a></li>
+						
+						<li><a href="http://binmen.github.io/Simple">团队作品</a></li>
+                    
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+
+    var _user = 'menbin';
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options.placement = 'left';
+        anchors.add('h2,h3');
+		anchors.remove('.subheading');
+    })
+</script>
+
+
+<!-- mathjax -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+<!-- for R highlight -->
+<script type="text/javascript" src="./js/r-highlight.js"></script>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                 <!--站长统计-->
+                 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259231356'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259231356%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	 
+                <p class="copyright text-muted">
+                   &copy;2016.MenBin Copyright Reserved. | Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://www.bootcss.com/">Bootstrap</a>.Theme by <a href="http://huangxuan.me">Hux</a> and <a href="http://brucezhaor.github.io/">brucezhaor</a>.
+					<br>
+					<span class="label label-primary label-md"><strong>转载请标明作者和出处</strong></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/blog.js"></script>
+	
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+	
+	<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);  
+    })
+</script>
+
+<!-- back-to-top -->
+<div id="back-top">
+  <a href="#section" data-toggle="tooltip" data-placement="top" title="top">
+	<i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script>
+	$('#back-top').hide();
+	$(document).ready(function () {
+	$(window).scroll(function () {
+    if ($(this).scrollTop() > 250) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+	
+</body>
+</html>

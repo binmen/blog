@@ -1,37 +1,361 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Blog by binmen</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Blog</h1>
-      <h2 class="project-tagline">this  is  a  blog</h2>
-      <a href="https://github.com/binmen/blog" class="btn">View on GitHub</a>
-      <a href="https://github.com/binmen/blog/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/binmen/blog/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+<html lang="zh-CN"> 
+<head>
+	<meta charset="utf-8">
+	<title>BIN MEN'S Blog | 数据泥瓦匠 </title>
+	<meta name="description" content="没有文艺范的数据挖掘工">
+	<meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 国产高速渲染 -->
+	<meta name="renderer" content="webkit">
+	<link rel="shortcut icon" href="./img/favicon.ico">	
+	<link rel="canonical" href="/">
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+	<!-- Le styles -->
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/font-awesome.min.css" rel="stylesheet">
+	<link href="./css/syntax.css" rel="stylesheet">
+	<link href="./css/style.css" rel="stylesheet">
 
-    <section class="main-content">
-      <h1>
-<a id="blog" class="anchor" href="#blog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>blog</h1>
+</head>
+<body ontouchstart="">
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://binmen.github.io/blog">MENBIN</a>
+        </div>
 
-<p>this  is  a  blog</p>
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./index.html">Home</a></li>
+					<li><a href="./categories.html">Categories</a></li>
+					<li><a href="">Tags</a></li>
+					<li><a href="./About.html">About Me</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+	
+	var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+	 *
+	 * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+	<!-- Page Header -->
+<header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>MEN  BIN'S Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">没有文艺范的数据挖掘工</span>
+					<ul class="list-inline">
+	
+                    </ul>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/binmen/blog">Blog</a> is maintained by <a href="https://github.com/binmen">binmen</a>.</span>
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+    		<div class="post-preview">
+<!--第一篇-->
+	 <a href="./javaR.html">
+        <h2 class="post-title">
+           Java与R的互相调用</span>
+        </h2>
+        <h3 class="post-subtitle">
+           Java基于R开发小软件的教程
+        </h3>
+        <div class="post-content-preview">   
+        Java作为主流的软件开发语言，R作为主流的统计软件，两者之间互相碰撞会擦出什么样的火花呢？本文告诉你...  
+        </div>
+    </a>
+	<p class="post-meta">
+        Posted by MenBin on June 06, 2016
+    </p>
+	</div>
+	<hr>	
+<div class="post-preview">
+<!--第2篇-->
+	 <a href="./echarts.html">
+        <h2 class="post-title">
+            在网页中使用Echarts绘图</span>
+        </h2>
+        <h3 class="post-subtitle">
+            在网页中插入绚丽多彩的统计图表，让你的演示更加完美
+        </h3>
+        <div class="post-content-preview">   
+        绚丽多彩的图表，让你的网页不再单调，让你的演示更加完美。   
+        </div>
+    </a>
+	<p class="post-meta">
+        Posted by MenBin on May 24, 2016
+    </p>
+	</div>
+	<hr>
+<!--第3篇-->
+<div class="post-preview">
+	 <a href="./biaobai.html">
+        <h2 class="post-title">
+            “5.20” 程序员这样表白<span class="label label-success">转载</span>
+        </h2>
+        <h3 class="post-subtitle">
+            使用R绘制浪漫的心形图，可以根据自己的需要定制文字，有没有心动-->
+        </h3>
+        <div class="post-content-preview">   
+        关于心形线的由来：1650年，斯德哥尔摩街头，一个宁静的午后，笛卡尔邂逅了18岁的瑞典公主克里斯汀。
+        机遇巧合，一段纯粹、美好的爱情悄然萌发。然而，没过多久，他们的恋情传到了国王的耳朵里。国王大
+		怒，将笛卡尔放逐，而公主被软禁在宫中。 身体孱弱的笛卡尔不久便染上重病，在生命进入倒计时的那段
+		日子，他日夜思念的还是街头偶遇的那张温暖的笑脸...   	   
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by MenBin on May 20, 2016
+    </p>
+	</div>
+<hr>
+	<!--第4篇-->
+	<div class="post-preview">
+    <a href="./weather.html">
+        <h2 class="post-title">
+            Python制作天气预报程序
+        </h2>
+        
+        <h3 class="post-subtitle">
+            使用python进行数据抓取，通过wxpython进行数据可视化处理，从而达到较好的人机交互效果。
+        </h3>
+        
+		
+        <div class="post-content-preview">
+           
+		   使用python正则表达式进行数据抓取，主要是PM2.5网站上的数据,然后对数据进行处理后，利用wxpython制作可视化程序，
+           然后利用pyinstall软件进行程序打包，从而设计出一款交互良好的软件。
+           	   
+        </div>
+		
+    </a>
+    <p class="post-meta">
+        Posted by MenBin on May 19, 2016
+    </p>
+	</div>
+<hr>
+	<!--第5篇-->
+	<div class="post-preview">
+	 <a href="./scrapy.html">
+        <h2 class="post-title">
+            Scrapy在windows环境下的安装与配置</span>
+        </h2>
+        <h3 class="post-subtitle">
+            Python在进行爬虫时，除了使用beautifulsoup与re等之外，还有一个专门的利器可以使用，那就是被称为“小刮刮”的Scrapy。
+        </h3>
+        <div class="post-content-preview">   
+        Scrapy(又名“小刮刮”），是Python开发的一个快速,高层次的屏幕抓取和web抓取框架，用于抓取web站点并从页面中提取结构化的数据。Scrapy用途广泛，可以用于数据挖掘、监测和自动化测试，本文详细的讲述了
+        在windows环境下安装与配置Scrapy的过程...		
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by MenBin on May 19, 2016
+    </p>
+</div>
+<hr>
+<!-- Pager -->
+<ul class="pager"> 
+  <li>
+    <span class="page_number">Page: 1 OF 1</span>
+  </li>
+  <li class="next disabled">
+    <a>Older &rarr;</a>
+  </li>
+</ul>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+    		</div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container">
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="./About.html">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        
+                            <img src="./img/me1.png" />
+                        
+                        
+                            <p>大数据时代的弄潮儿</p>
+                        
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+						
+                            
+							
+                        </ul>
+                    </div>
+                </section>
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>友情链接</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://benmin.github.io/blog">数据泥瓦匠</a></li>
+                    
+                        <li><a href="https://github.com/Huxpro/huxpro.github.io">Hux-模板来源</a></li>
+                    
+                        <li><a href="http://brucezhaor.github.io/">brucezhaor</a></li>
+						
+						<li><a href="http://binmen.github.io/Simple">团队作品</a></li>
+                    
+                        
+                    
+                </ul>
+                
+    		</div>
+	</div>
+</div>
 
-    </section>
+	
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+         
+                <p class="copyright text-muted">
+				    <!--站长统计-->
+                    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259231356'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259231356%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	 
+                    &copy;2016. MenBin Copyright Reserved. | Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://www.bootcss.com/">Bootstrap</a>.Theme by <a href="http://huangxuan.me">Hux</a> and <a href="http://brucezhaor.github.io/">brucezhaor</a>.
+					<br>
+					<span class="label label-primary label-md"><strong>转载请标明作者和出处</strong></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
 
-  
-  </body>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/blog.js"></script>
+	
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+	
+	<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);  
+    })
+</script>
+<!-- back-to-top -->
+<div id="back-top">
+  <a href="#section" data-toggle="tooltip" data-placement="top" title="top">
+	<i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script>
+	$('#back-top').hide();
+	$(document).ready(function () {
+	$(window).scroll(function () {
+    if ($(this).scrollTop() > 250) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+	
+</body>
 </html>
