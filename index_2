@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN"> 
+<head>
+	<meta charset="utf-8">
+	<title>BIN MEN'S Blog | 数据泥瓦匠 </title>
+	<meta name="description" content="没有文艺范的数据挖掘工">
+	<meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 国产高速渲染 -->
+	<meta name="renderer" content="webkit">
+	<link rel="shortcut icon" href="./img/favicon.ico">	
+	<link rel="canonical" href="/">
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+	<!-- Le styles -->
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/font-awesome.min.css" rel="stylesheet">
+	<link href="./css/syntax.css" rel="stylesheet">
+	<link href="./css/style.css" rel="stylesheet">
+
+</head>
+<body ontouchstart="">
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://binmen.github.io/blog">MENBIN</a>
+        </div>
+
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./index.html">Home</a></li>
+					<li><a href="./categories.html">Categories</a></li>
+					<li><a href="">Tags</a></li>
+					<li><a href="./About.html">About Me</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+	
+	var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+	 *
+	 * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+	<!-- Page Header -->
+<header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>MEN  BIN'S Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">没有文艺范的数据挖掘工</span>
+					<ul class="list-inline">
+	
+                    </ul>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+	
+
+	<!--第5篇-->
+	<div class="post-preview">
+	 <a href="./scrapy.html">
+        <h2 class="post-title">
+            Scrapy在windows环境下的安装与配置</span>
+        </h2>
+        <h3 class="post-subtitle">
+            Python在进行爬虫时，除了使用beautifulsoup与re等之外，还有一个专门的利器可以使用，那就是被称为“小刮刮”的Scrapy。
+        </h3>
+        <div class="post-content-preview">   
+        Scrapy(又名“小刮刮”），是Python开发的一个快速,高层次的屏幕抓取和web抓取框架，用于抓取web站点并从页面中提取结构化的数据。Scrapy用途广泛，可以用于数据挖掘、监测和自动化测试，本文详细的讲述了
+        在windows环境下安装与配置Scrapy的过程...		
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by MenBin on May 19, 2016
+    </p>
+</div>
+<hr>
+<!-- Pager -->
+<ul class="pager"> 
+  <li>
+    <span class="page_number">Page: 2 OF 2</span>
+  </li>
+  <li class="previous"><a href="./index.html">&larr; New</a></li>
+  <li class="next disabled">
+    <a>Older &rarr;</a>
+  </li>
+</ul>
+
+    		</div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container">
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="./About.html">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        
+                            <img src="./img/me1.png" />
+                        
+                        
+                            <p>大数据时代的弄潮儿</p>
+                        
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+						
+                            
+							
+                        </ul>
+                    </div>
+                </section>
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>友情链接</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://benmin.github.io/blog">数据泥瓦匠</a></li>
+                    
+                        <li><a href="https://github.com/Huxpro/huxpro.github.io">Hux-模板来源</a></li>
+                    
+                        <li><a href="http://brucezhaor.github.io/">brucezhaor</a></li>
+						
+						<li><a href="http://binmen.github.io/Simple">团队作品</a></li>
+                    
+                        
+                    
+                </ul>
+                
+    		</div>
+	</div>
+</div>
+
+	
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+         
+                <p class="copyright text-muted">
+				    <!--站长统计-->
+                    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259231356'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259231356%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	 
+                    &copy;2016. MenBin Copyright Reserved. | Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://www.bootcss.com/">Bootstrap</a>.Theme by <a href="http://huangxuan.me">Hux</a> and <a href="http://brucezhaor.github.io/">brucezhaor</a>.
+					<br>
+					<span class="label label-primary label-md"><strong>转载请标明作者和出处</strong></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/blog.js"></script>
+	
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+	
+	<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);  
+    })
+</script>
+<!-- back-to-top -->
+<div id="back-top">
+  <a href="#section" data-toggle="tooltip" data-placement="top" title="top">
+	<i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script>
+	$('#back-top').hide();
+	$(document).ready(function () {
+	$(window).scroll(function () {
+    if ($(this).scrollTop() > 250) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+	
+</body>
+</html>
