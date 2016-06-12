@@ -3,6 +3,8 @@
 2.博客中涉及的内容主要是我在学习中遇到的比较好的案例</br>
 3.博客中讲述的内容有各种统计语言以及计算机语言等方面的内容，主要有:R、SAS、Python、Java、Matlab等</br>
 #博客地址
-http://binmen.github.io/blog
+http://binmen.github.io/blog</br>
+#我的首页
+
 
 
