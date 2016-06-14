@@ -296,8 +296,31 @@ width=0&height=350&fansRow=2&ptype=1&speed=50&skin=1&isTitle=1&noborder=0&isWeib
     FastClick.attach(document.body);  
     })
 </script>
-<!---->
-<audio id="bgMusic" src="./download/music.mp3" autoplay="autoplay" loop="-1"></audio>
+<!--音乐播放-->
+<script src="./js/jquery.js"></script><a class="mscBtn" id="audioBtn" title='终于等到你' style="cursor:pointer;"></a>
+<audio id="bgMusic" src="./download/music.mp3" autoplay="autoplay"></audio>
+<script>
+var music = document.getElementById("bgMusic");
+var musicArr=[
+{url:'./download/music1.mp3',title:" "},
+{url:'./download/music2.mp3',title:" "},
+{url:'./download/music3.mp3',title:" "},
+{url:'./download/music.mp3',title:" "},
+];
+$("#audioBtn").click(function(){
+	if(music.paused){music.play();
+	$("#audioBtn").removeClass("pause").addClass("play");
+	}else{music.pause();
+	$("#audioBtn").removeClass("play").addClass("pause");}
+});
+$("#bgMusic").on('ended',function(){
+	var isone=$("#bgMusic").attr('src');
+	var noone=musicArr[parseInt(Math.random()*musicArr.length)];
+	if (noone.url==isone){var noone=musicArr[parseInt(Math.random()*musicArr.length)];}
+	$("#bgMusic").attr('src',noone.url);
+	$("#audioBtn").attr('title',noone.title);
+});
+</script>
 <!-- back-to-top -->
 <div id="back-top">
   <a href="#section" data-toggle="tooltip" data-placement="top" title="top">
