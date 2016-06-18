@@ -2,8 +2,8 @@
 <html lang="zh-CN"> 
 <head>
 	<meta charset="utf-8">
-	<title>Java与R的互相调用 | MENBIN'S Blog</title>
-	<meta name="description" content="Java基于R开发小软件的教程">
+	<title>Wordcloud2绘制词云图 | MENBIN'S Blog</title>
+	<meta name="description" content=" Wordcloud2让你的词云图更加绚烂">
 	<meta name="author" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- Enable responsive viewport -->
@@ -11,11 +11,14 @@
 	<!-- 国产高速渲染 -->
 	<meta name="renderer" content="webkit">
 	<link rel="shortcut icon" href="./img/favicon.ico">	
-	<link rel="canonical" href="./javaR.html">
+	<link rel="canonical" href="./weather.html">
+	<link rel="alternate" type="application/rss+xml" title="" href="./feed.xml">
 	<!-- Le styles -->
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/font-awesome.min.css" rel="stylesheet">
+	<link href="./css/syntax.css" rel="stylesheet">
 	<link href="./css/style.css" rel="stylesheet">
+
 </head>
 
 <body ontouchstart="">
@@ -104,7 +107,7 @@
 	<!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('./img/javaR.png')
+        background-image: url('./img/word.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -112,9 +115,9 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Java与R的互相调用</h1>
-                    <h2 class="subheading">Java基于R开发小软件的教程</h2>
-                    <span class="meta">Posted by MenBin on June 6, 2016</span>
+                    <h1>Wordcloud2绘制词云图</h1>
+                    <h2 class="subheading"> Wordcloud2让你的词云图更加绚烂</h2>
+                    <span class="meta">Posted by MenBin on June 17, 2016</span>
                 </div>
             </div>
         </div>
@@ -125,149 +128,149 @@
 <!-- Main Content -->
 	<div class="container">
 		<div class="row">
-
 		<!-- Post Container -->
     		<div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 post-container">
-				<h2 class="no_toc" id="section">目录</h2>
-				<hr>
-                <ul id="markdown-toc">
-                <li><a href="#section" id="markdown-toc-section">写在前面的话</a></li>
-				<hr>
-                <li><a href="#section-1" id="markdown-toc-section-1">第一篇 在Java中调用R语言</a>
-                <li><a href="#section-2" id="markdown-toc-section-2">Rserve的安装</a></li>
-				<li><a href="#section-3" id="markdown-toc-section-3">Java代码的实现</a></li>
-				<li><a href="#section-4" id="markdown-toc-section-4">Java调用R必备的程序包</a></li>
-				<li><a href="#section-5" id="markdown-toc-section-5">Java连接R的语句</a></li>
-				<hr>
-				<li><a href="#section-6" id="markdown-toc-section-6">利用exe4j对程序进行打包教程</a></li>
-				<hr>
-				<li><a href="#section-7" id="markdown-toc-section-7">软件展示</a></li>
-				<hr>
-				<li><a href="#section-8" id="markdown-toc-section-8">第二篇  在R中调用Java程序(未开放)</a></li>
-				</ul>
-                <hr><ul class="tag_box list-unstyled list-inline"</ul></hr>
-    			<h2 id="section">写在前面的话</h2>
-<p>Java与R的介绍</p>
-<blockquote>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java作为主流的应用软件开发语言，已经被广泛的应用到各种项目中；而R语言作为最主流的统计软件之一，以其广泛的程序包以及统计作图能力，受到越来越多人的青睐。如何
-把两种语言完美的结合在一起，一直是我在思考的问题，经过查阅大量的资料，终于发现了Java与R的衔接，因此就有了这篇文章。
-</blockquote>
+    			<h2 id="section">Wordcloud2的诞生</h2>
+<p>前几天无聊在刷微博时，发现R语言也可以绘制出媲美<code class="highlighter-rouge">Tagxedo</code>效果的词云图，于是按照微博上的链接找到了作者的Github，然后按照Github上的介绍进行了一下实验，感觉非常的爽。</p>
 <hr>
-<h2 id="section-1">第一篇   在Java中调用R语言</h2>
-<p>本文以机器学习中的<a  href="http://binmen.github.io/cy">回归树算法</a>为例，介绍Java中是如何调用R语言的；除此之外我还为此程序做了个<code class="highlighter-rouge">GUI</code>，最后通过<code class="highlighter-rouge">exe4j</code>进行打包；下面是在Java中调用R的基本步骤：</p>
+<h2 id="section-1">作者介绍</h2>
+<p>关于作者（郎大为）的详细信息，请到作者的<a href="http://chiffon.ninja">博客</a>查看，还有此项目作者已经在Github上开源，欢迎到<a href="https://github.com/lchiffon/wordcloud2">作者的Github</a>上star。作者说了，本包的完善取决于<code class="highlighter-rouge">star</code>的数量（^^）</p>
+<hr>
+<h2  id="section-2">wordcloud2包的安装</h2>
 <ul>
-  <li>在Java中调用R，有两种方式，一种是通过<code class="highlighter-rouge">Rserve</code>包进行连接，使用这种包的原理是R作为服务器，而Java作为前台程序；另外一种是通过<code class="highlighter-rouge">JNI</code>进行动态连接。在这里我主要介绍如何利用<code class="highlighter-rouge">Rserve</code>进行连接。</li>
-  <li>Java环境的配置以及开发工具<code class="highlighter-rouge">Eclipse</code>的安装</li>
-  <li>Java打包软件<code class="highlighter-rouge">exe4j</code>的安装</li>
-  <li>利用<code class="highlighter-rouge">exe4j</code>软件进行程序打包的教程</li>
+<li>首先是<code class="highlighter-rouge">devtools</code>的安装，通过如下代码实现：</li>
+<figure class="highlight"><pre><code class="language-r" data-lang="r">install.packages("devtools")
+library(devtools)
+</code></pre></figure>
+<li>然后是<code class="highlighter-rouge">wordcloud2</code>的安装，通过如下代码实现：</li>
+<figure class="highlight"><pre><code class="language-r" data-lang="r">devtools::install_github("lchiffon/wordcloud2")
+library(wordcloud2)
+</code></pre></figure>
+<p>到此，利用wordcloud2绘制词云图的准备工作已经完成。</p>
 </ul>
 <hr>
-<h3 id="section-2">Rserve的安装</h3>
-<p>在R的任意版本中通过<code class="highlighter-rouge">install.packages("Rserve")</code>命令都可以完成Rserve包的安装，安装以后加载一下此包，通过<code class="highlighter-rouge">library(Rserve)</code>命令实现，
-然后通过<code class="highlighter-rouge">Rserve()</code>进行服务器的开启。</p>
+<h2  id="section-3">wordcloud2基本使用方法</h2>
+<h3  id="section-3-1">基本函数</h3>
+<figure class="highlight"><pre><code class="language-r" data-lang="r">library(wordcloud2)
+wordcloud2(data = dataset)
+</code></pre></figure>
 <hr>
-<h3 id="section-3">Java代码的实现</h3>
-<pre>package javaR;
-//导入Java调用R必备的包;
-import org.rosuda.REngine.REXPMismatchException;
-import org.rosuda.REngine.REngineException;
-import org.rosuda.REngine.Rserve.*;
-import rserver.function.RService;
-import org.rosuda.REngine.REXP;
-//######################################
-import java.awt.FlowLayout;
-import javax.swing.ImageIcon; 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea; 
-import javax.swing.JScrollPane; 
-import javax.swing.JLabel;
-import javax.swing.JToolBar;
-import java.io.File;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-.......此处省略代码.....
-public static void main(String[] args) throws REXPMismatchException,REngineException{
-         new Rtest();
-    }
+<h3  id="section-3-2">函数参数设置</h3>
+<ul>
+<li><code class="highlighter-rouge">data</code>A data frame including word and freq in each column.</li>
+<li><code class="highlighter-rouge">size</code>Font size, default is 1. The larger size means the bigger word.</li>
+<li><code class="highlighter-rouge">fontFamily</code>Font to use.</li>
+<li><code class="highlighter-rouge">fontWeight</code>Font weight to use, e.g. normal, bold or 600</li>
+<li><code class="highlighter-rouge">color</code>color of the text, keyword 'random-dark' and 'random-light' can be used. color vector is also supported in this param.</li>
+<li><code class="highlighter-rouge">minSize</code>A character string of the subtitle.</li>
+<li><code class="highlighter-rouge">backgroundColor</code>Color of the background.</li>
+<li><code class="highlighter-rouge">shape</code>The shape of the "cloud" to draw. Can be a keyword present. Available presents are 'circle' (default), 'cardioid' (apple or heart shape curve, the most known polar equation), 'diamond' (alias of square), 'triangle-forward', 'triangle', 'pentagon', and 'star'.</li>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他参数点击此处<a href="http://lchiffon.github.io/2016/06/10/wordcloud.html">here</a>，摘录自郎大为的<a href="http://chiffon.ninja">博客</a>，转载请注明出处。</p>
+</ul>
+<hr>
+<h2 id="section-4">R语言绘制词云图案例--中文版</h2>
+<p><kbd>Dataset</kbd><a href="./download/dataset.zip">(sample)sam_tianchi_2014001_rec_tmall_product.csv</a>下载，数据来源天池实验室。</p>
+<figure class="highlight"><pre><code class="language-r" data-lang="r">#代码
+data<-read.csv("H:/数据挖掘/数据挖掘作业/2016春硕/dataset/REC-TMALL/(sample)sam_tianchi_2014001_rec_tmall_product.csv",head=T)
+stw<-read.csv("H:/数据挖掘/数据挖掘作业/2016春硕/dataset/REC-TMALL/中文停词库.txt",header=T,stringsAsFactors=F)
+Sys.setenv(JAVA_HOME='C:\\Program Files (x86)\\Java\\jre7')
+library("stringr")
+#调入分词的库
+#install.packages("rJava")
+library(rJava) 
+#install.packages("Rwordseg")
+library("Rwordseg") 
+#数据去重
+data=unique(data)
+title<-data$title
+title <- title[title!=" "]
+title<-as.character(title) 
+#分词，并将分词结果转换为向量
+myfile.words <- unlist(lapply(X =title,FUN = segmentCN)) 
+#剔除URL等各种不需要的字符，还需要删除什么特殊的字符可以依样画葫芦在下面增加gsub的语句
+myfile.words <- gsub("[a-zA-Z\\/\\.0-9]","",myfile.words)
+stopwords_CN=c(NULL)
+#停词处理
+for(i in 1:dim(stw)[1]){
+stopwords_CN=c(stopwords_CN,stw[i,1])
 }
-</pre>
-<p>附：<a href="./download/Java调用R.zip">详细代码下载</a>，代码已在<code class="highlighter-rouge">jre1.6</code>环境下编译通过。</p>
+for(j in 1:length(stopwords_CN)){
+myfile.words <- subset(myfile.words,myfile.words!=stopwords_CN[j])
+}
+#过滤掉1个字的词
+myfile.words<- subset(myfile.words,nchar(as.character(myfile.words))>1)
+#统计词频
+myfile.freq <- table(unlist(myfile.words))
+myfile.freq <- rev(sort(myfile.freq))
+myfile.freq <- data.frame(word=names(myfile.freq),freq=myfile.freq);
+names(myfile.freq)<-c("word","words","freq")
+word<-myfile.freq$word
+freq<-myfile.freq$freq
+myfile.freq <- data.frame(word,freq) 
+write.table(myfile.freq,file="c:/data/分词结果.csv",quote=FALSE,sep=",")
+fix(myfile.freq) 
+#绘制词云图
+#library(devtools)
+#安装wordcloud2最新包
+#devtools::install_github("lchiffon/wordcloud2")
+library(wordcloud2)
+wordcloud2(myfile.freq, size = 1, fontFamily = "微软雅黑",color = "random-light", backgroundColor = "black")
+</code></pre></figure>
 <hr>
-<h3 id="section-4">Java调用R必备的程序包</h3>
-<p>在Java调用R必须先导入以下包，这是Java中调用R语言必备的包</p>
-<pre>import org.rosuda.REngine.REXPMismatchException;
-import org.rosuda.REngine.REngineException;
-import org.rosuda.REngine.Rserve.*;
-import rserver.function.RService;
-import org.rosuda.REngine.REXP;
-</pre>
+<h3 id="section-4-1">词云图-1</h3>
+<figure class="highlight"><pre><code class="language-r" data-lang="r">#代码
+library(wordcloud2)
+wordcloud2(myfile.freq, size = 1, fontFamily = "微软雅黑",
+           color = "random-light", backgroundColor = "black")
+</code></pre></figure>
+<img src="./img/wordcloud.jpg" />
+<hr>	
+<h3 id="section-4-2">词云图-2</h3>
+<figure class="highlight"><pre><code class="language-r" data-lang="r">#代码
+wordcloud2(myfile.freq, size = 1,shape = 'star',fontFamily = "微软雅黑",
+           color = "random-light", backgroundColor = "black")
+</code></pre></figure>
+<img src="./img/wordcloud1.jpg" />
 <hr>
-<h3 id="section-5">Java连接R的语句</h3>
-<pre>rService = new RService();
-final RConnection re = rService.startTransaction();
-</pre>
-<p>这是Java连接R的语句，是Java与R连接的桥梁。</p>
+<h3 id="section-4-3">词云图-3</h3>
+<figure class="highlight"><pre><code class="language-r" data-lang="r">#代码
+wordcloud2(myfile.freq, size = 2, minRotation = -pi/2, maxRotation = -pi/2,
+           fontFamily = "微软雅黑",color = "random-light", backgroundColor = "black")
+</code></pre></figure>
+<img src="./img/wordcloud2.jpg" />	
 <hr>
-<h2 id="section-6">利用exe4j对程序进行打包教程</h2>
-<p>首先是exe4j软件的下载，下载后直接安装即可。</p>
-<ol>
-<li>软件打开界面；</li>
-<img src="./img/r1.jpg" />
-<li>点击next，进入如下界面，在此界面选择第二项"java  in  exe"，此选项的含义是将Jar程序打包为exe文件；</li>
-<img src="./img/r2.jpg" />
-<li>点击next进入如下界面，这里"short name of ypur application"为你的软件的名称（随便起），下面那个是将软件放在哪（随便放）</li>
-<img src="./img/r3.jpg" />
-<li>点击next进入如下界面，全部默认，剩下的自己思考；</li>
-<img src="./img/r4.jpg" />
-<li>点击next进入如下界面，点击右边的<span class="label label-success"><strong>+</strong></span>添加你生成的jar包以及支撑软件运行的Jar包；"main  class"为你程序定义的class，软件会自动搜索；</li>
-<img src="./img/r5.jpg" />
-<img src="./img/r6.jpg" />
-<img src="./img/r7.jpg" />
-<li>点击next进入如下界面，这里为Jre环境的选择，最小为1.4，最大可不选，由于此程序是基于jre1.6运行，所以选择最小1.6即可；这里最好选择将你的jre环境打包入程序，可以方便用户的使用；</li>
-<img src="./img/r8.jpg" />
-<li>点击next进入如下界面，全部默认，到此软件就打包好了。</li>
-<img src="./img/r9.jpg" />
-<img src="./img/r10.jpg" />
-</ol>
+<h2 id="section-5">R语言绘制词云图案例--字母版</h2>
+<h3 id="section-5-1">词云图-1</h3>
+<p>字母分词可以使词云图按照设定的字母进行呈现，具体命令如下：</p>
+<figure class="highlight"><pre><code class="language-r" data-lang="r">#代码
+library(wordcloud2)
+letterCloud(myfile.words,word = "R", size = 2,fontFamily = "微软雅黑",color = "random-light", backgroundColor = "black")
+</code></pre></figure>
+<img src="./img/wordcloud3.jpg" />
 <hr>
-<h2 id="section-7">软件展示</h2>
-<img src="./img/javaR.gif" />
-<p>附：<a href="./download/Javar.zip">软件下载</a>，这里没有提供jre环境，需自己下载打包</p>
-<hr>
-<h2 id="section-8">第二篇  在R中调用Java程序(未开放)</h2>	
+<p><code class="highlighter-rouge">注意</code>也可以按照单词的形式进行绘制，但是要保证词量足够大</p>
 <hr><ul class="tag_box list-unstyled list-inline"</ul></hr>
 				<p class="text-right">
 				<a href="./index.html">MENBIN</a>
 				<span class="time">
-				<time><span class="label label-primary label-md"><strong>2016-06-06</strong></span></time>
+				<time><span class="label label-primary label-md"><strong>2016-06-17</strong></span></time>
 				</br>地点：中国--大连--东财
 				</span>
-				</p>
-<hr>					
+				</p>	
+					<hr>					
 					<ul class="tag_box list-unstyled list-inline">
 					</ul>
 					<hr>
-					
                 <!-- 多说 Share start -->
 				<div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="./javaR"
-                    data-title="Java与R的互相调用"
-                    data-url="http://binmen.github.io/blogs/javaR"
-                    data-content="Java基于R开发小软件的教程" >
+                    data-thread-key="./wordcloud2"
+                    data-title="wordcloud2绘制词云图"
+                    data-url="http://binmen.github.io/blogs/wordcloud2"
+                    data-content=" Wordcloud2让你的词云图更加绚烂" >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -281,18 +284,22 @@ final RConnection re = rService.startTransaction();
                 <hr>
                 </div>
                 <!-- 多说 Share end-->
-                    <ul class="pager">
-                <!--如果可以向前翻页，<li class="previous  disabled"><a href="/blog/2016/02/25/git-junior/" data-toggle="tooltip" data-placement="top" title="Git进阶1">-->
-					<li class="next"><a href="./wordcloud2.html" data-toggle="tooltip" data-placement="top" title="Wordcloud2绘制词云图">NEXT</br>Wordcloud2绘制词云图</a></li>
-		            <li class="previous"><a href="./echarts.html" data-toggle="tooltip" data-placement="top" title="“在网页中使用Echarts绘图">PREVIOUS</br>在网页中使用Echarts绘图</a></li>
-                </ul> 
+                <ul class="pager">
+                <!--如果可以向前翻页，<li class="previous  disabled"><a href=" " data-toggle="tooltip" data-placement="top" title="">-->
+					<li class="previous"><a href="./javaR.html" data-toggle="tooltip" data-placement="top" title=" Java与R的互相调用">Previous</br> Java与R的互相调用</a></li>
+		            <li class="next  disabled"><a>Next</a></li>
+                </ul>
+
+
+                
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="./javaR"
-                        data-title="Java与R的互相调用"
-                        data-url="http://binmen.github.io/blogs/javaR/" >
+                        data-thread-key="./biaobai"
+                        data-title="Wordcloud2绘制词云图"
+                        data-url="http://binmen.github.io/blogs/wordcloud2/" >
                     </div>
+					
                 </div>
                 <!-- 多说评论框 end -->
             </div>
@@ -302,6 +309,8 @@ final RConnection re = rService.startTransaction();
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 sidebar-container">
+
+
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -383,7 +392,7 @@ final RConnection re = rService.startTransaction();
                  <!--站长统计-->
                  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259231356'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259231356%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	 
                 <p class="copyright text-muted">
-                   &copy;2016.MenBin Copyright Reserved. | Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://www.bootcss.com/">Bootstrap</a>.Theme by <a href="http://huangxuan.me">Hux</a> and <a href="http://brucezhaor.github.io/">brucezhaor</a>.
+                   &copy;2016. MenBin Copyright Reserved. | Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://www.bootcss.com/">Bootstrap</a>.Theme by <a href="http://huangxuan.me">Hux</a> and <a href="http://brucezhaor.github.io/">brucezhaor</a>.
 					<br>
 					<span class="label label-primary label-md"><strong>转载请标明作者和出处</strong></span>
                 </p>
