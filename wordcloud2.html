@@ -251,7 +251,14 @@ letterCloud(myfile.words,word = "R", size = 2,fontFamily = "微软雅黑",color 
 </code></pre></figure>
 <img src="./img/wordcloud3.jpg" />
 <hr>
-<p><code class="highlighter-rouge">注意</code>也可以按照单词的形式进行绘制，但是要保证词量足够大</p>
+<h3 id="section-5-2">词云图-2</h3>
+<p><kbd>dataset</kbd><a href="./download/dataset1.zip">dataset</a>下载，数据来源郎大为<a href="http://chiffon.ninja">博客</a></p>
+<figure class="highlight"><pre><code class="language-r" data-lang="r">#代码
+library(wordcloud2)
+letterCloud(dataset,word = "WORDCLOUD", size = 2,
+            fontFamily = "微软雅黑",color = "random-light", backgroundColor = "black")
+</code></pre></figure>
+<img src="./img/wordcloud4.jpg" />
 <hr><ul class="tag_box list-unstyled list-inline"</ul></hr>
 				<p class="text-right">
 				<a href="./index.html">MENBIN</a>
