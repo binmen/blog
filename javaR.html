@@ -137,16 +137,16 @@
                 <li><a href="#section" id="markdown-toc-section">写在前面的话</a></li>
 				<hr>
                 <li><a href="#section-1" id="markdown-toc-section-1">第一篇 在Java中调用R语言</a>
-                <li><a href="#section-2" id="markdown-toc-section-2">Rserve的安装</a></li>
-				<li><a href="#section-3" id="markdown-toc-section-3">Java代码的实现</a></li>
-				<li><a href="#section-4" id="markdown-toc-section-4">Java调用R必备的程序包</a></li>
-				<li><a href="#section-5" id="markdown-toc-section-5">Java连接R的语句</a></li>
+                <li><a href="#section-1-1" id="markdown-toc-section-1-1">Rserve的安装</a></li>
+				<li><a href="#section-1-2" id="markdown-toc-section-1-2">Java代码的实现</a></li>
+				<li><a href="#section-1-3" id="markdown-toc-section-1-3">Java调用R必备的程序包</a></li>
+				<li><a href="#section-1-4" id="markdown-toc-section-1-4">Java连接R的语句</a></li>
 				<hr>
-				<li><a href="#section-6" id="markdown-toc-section-6">利用exe4j对程序进行打包教程</a></li>
+				<li><a href="#section-2" id="markdown-toc-section-2">利用exe4j对程序进行打包教程</a></li>
 				<hr>
-				<li><a href="#section-7" id="markdown-toc-section-7">软件展示</a></li>
+				<li><a href="#section-3" id="markdown-toc-section-3">软件展示</a></li>
 				<hr>
-				<li><a href="#section-8" id="markdown-toc-section-8">第二篇  在R中调用Java程序(未开放)</a></li>
+				<li><a href="#section-4" id="markdown-toc-section-4">第二篇  在R中调用Java程序(未开放)</a></li>
 				</ul>
                 <hr><ul class="tag_box list-unstyled list-inline"</ul></hr>
     			<h2 id="section">写在前面的话</h2>
@@ -165,11 +165,11 @@
   <li>利用<code class="highlighter-rouge">exe4j</code>软件进行程序打包的教程</li>
 </ul>
 <hr>
-<h3 id="section-2">Rserve的安装</h3>
+<h3 id="section-1-1">Rserve的安装</h3>
 <p>在R的任意版本中通过<code class="highlighter-rouge">install.packages("Rserve")</code>命令都可以完成Rserve包的安装，安装以后加载一下此包，通过<code class="highlighter-rouge">library(Rserve)</code>命令实现，
 然后通过<code class="highlighter-rouge">Rserve()</code>进行服务器的开启。</p>
 <hr>
-<h3 id="section-3">Java代码的实现</h3>
+<h3 id="section-1-2">Java代码的实现</h3>
 <pre>package javaR;
 //导入Java调用R必备的包;
 import org.rosuda.REngine.REXPMismatchException;
@@ -206,7 +206,7 @@ public static void main(String[] args) throws REXPMismatchException,REngineExcep
 </pre>
 <p>附：<a href="./download/Java调用R.zip">详细代码下载</a>，代码已在<code class="highlighter-rouge">jre1.6</code>环境下编译通过。</p>
 <hr>
-<h3 id="section-4">Java调用R必备的程序包</h3>
+<h3 id="section-1-3">Java调用R必备的程序包</h3>
 <p>在Java调用R必须先导入以下包，这是Java中调用R语言必备的包</p>
 <pre>import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngineException;
@@ -215,13 +215,13 @@ import rserver.function.RService;
 import org.rosuda.REngine.REXP;
 </pre>
 <hr>
-<h3 id="section-5">Java连接R的语句</h3>
+<h3 id="section-1-4">Java连接R的语句</h3>
 <pre>rService = new RService();
 final RConnection re = rService.startTransaction();
 </pre>
 <p>这是Java连接R的语句，是Java与R连接的桥梁。</p>
 <hr>
-<h2 id="section-6">利用exe4j对程序进行打包教程</h2>
+<h2 id="section-2">利用exe4j对程序进行打包教程</h2>
 <p>首先是exe4j软件的下载，下载后直接安装即可。</p>
 <ol>
 <li>软件打开界面；</li>
@@ -243,11 +243,11 @@ final RConnection re = rService.startTransaction();
 <img src="./img/r10.jpg" />
 </ol>
 <hr>
-<h2 id="section-7">软件展示</h2>
+<h2 id="section-3">软件展示</h2>
 <img src="./img/javaR.gif" />
 <p>附：<a href="./download/Javar.zip">软件下载</a>，这里没有提供jre环境，需自己下载打包</p>
 <hr>
-<h2 id="section-8">第二篇  在R中调用Java程序(未开放)</h2>	
+<h2 id="section-4">第二篇  在R中调用Java程序(未开放)</h2>	
 <hr><ul class="tag_box list-unstyled list-inline"</ul></hr>
 				<p class="text-right">
 				<a href="./index.html">MENBIN</a>
