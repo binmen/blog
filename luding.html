@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN"> 
+<head>
+	<meta charset="utf-8">
+	<title>文本挖掘技术初探 | MENBIN'S Blog</title>
+	<meta name="description" content="文本挖掘技术在文学作品中的应用">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 国产高速渲染 -->
+	<meta name="renderer" content="webkit">
+	<link rel="shortcut icon" href="./img/favicon.ico">	
+	<link rel="alternate" type="application/rss+xml" title="" href="./feed.xml">
+	<!-- Le styles -->
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/font-awesome.min.css" rel="stylesheet">
+	<link href="./css/syntax.css" rel="stylesheet">
+	<link href="./css/style.css" rel="stylesheet">
+</head>
+<body ontouchstart="">
+
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://binmen.github.io/blog">MENBIN</a>
+        </div>
+
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./index1.html">Home</a></li>
+					<li><a href="./categories.html">Categories</a></li>
+					<li><a href="">Tags</a></li>
+					<li><a href="./About.html">About Me</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+	
+	var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+	 *
+	 * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+	
+	<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('./img/word.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>文本挖掘技术初探</h1>
+                    <h2 class="subheading">文本挖掘技术在文学作品中的应用</h2>
+                    <span class="meta">Posted by MenBin on Jul 9, 2016</span>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<kbd>浏览量</kbd>&nbsp;&nbsp;&nbsp;&nbsp;<span data-hk-page="http://binmen.github.io/blog/luding/"> - </span>&nbsp;&nbsp;次</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<article>
+<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+		<!-- Post Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+				<img src="./luding/0.jpg"/>
+    			<h2 id="section">《鹿鼎记》简介</h2>
+               <blockquote><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;《鹿鼎记》是金庸先生最 《鹿鼎记》是金庸先生最 后一部小说，也是其登峰造极之作 一部小说，也是其登峰造极之作 。小说讲
+			   的是一 个从小在扬州妓院长大的孩 韦小宝，以不会任何武功之姿态闯荡江湖各大帮、 小宝，以不会任何武功之姿态闯荡江湖各大帮、 周旋皇帝
+			   朝臣之间 并奉旨远征云南、俄罗斯周旋皇帝朝臣之间 并奉旨远征云南、俄罗斯的故事 。金庸先生将韦小宝的个 人经历与史密切结合，大玩哈镜
+			   的手法令赞叹几乎信以为真而 人经历与史密切结合，大玩哈镜的手法令赞叹几乎信以为真而 人经历与史密切结合，大玩哈镜的手法令赞叹几乎信
+			   以为真而 人经历与史密切结合，大玩哈镜的手法令赞叹几乎信以为真而 人经历与史密切结合，大玩哈镜的手法令赞叹几乎信以为真而 小宝的做人
+			   方法及毫不留情处事式揭示生各阶层黑暗面这种，使得 小宝的做人方法及毫不留情处事式揭示生各阶层黑暗面这种，使得 这部书成了不是武侠小说 的。
+			   </p></blockquote>
+			   <hr>
+			   <select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+                <option value="0" selected>文字分析</option>
+                <option value="1">代码分析</option>
+                </select>
+				<div class="zh post-container">
+			   <h2 id="section-1">人物分析</h2>
+			   <p>为了更好分析各主角重要度，我们统计各个主角出现的次数，从图1可以发现，出次数最多的当然是小说主人公韦小宝了，
+			   其次是康熙皇帝，然后是建宁公主，双儿，沐剑屏、吴三桂、阿珂次之，方怡最少。这也直观的反映出了各主人公所处的地位以及重要性。</p>
+			   <img src="./luding/1.jpg" />
+			   <p  align="center">图1 各主角出现的次数</p>
+			   <hr>
+			   <h2 id="section-2">主角的出场顺序</h2>
+			   <p>我们再来看看出场顺序的密度统计图。如果我们把每个人物出场的自然段按照顺序排列，那就不难给出每个人物的出场密度估计。
+			   首先我们可以看出男主角的出现密度还是比较均匀的，可以看出作者对韦小宝的描述是均匀分布的；再看看几个女主角的出场顺序，可以看出双儿、
+			   建宁公主是最早出场的。曾柔、方怡是出场比较晚的两个，韦小宝在围剿王屋山时曾柔倾心于他，而最初对韦小宝嗤之以鼻的方怡最终也被他揽入怀中。</p>
+			   <img src="./luding/2.jpg" />
+			   <p  align="center">图2 各主角的出场顺序与密度</p>
+			   <hr>
+			   <h2 id="section-3">韦小宝与各女主角的亲密程度</h2>
+			   <p>韦小宝的七个老婆都跟他有过不同程度的感情纠葛，而这个程度我们应该如何去界定大小呢？在这里我们根据她们与韦小宝同时出场的次数来刻画亲密
+			   程度。书中每一个自然段的意义相近、中心一致。所以，用与韦小宝出现在同一自然段的次数来定义她们与韦小宝的亲密值，这个计算是比较简单的。
+			   如图3，我们可以看出双儿与苏荃是与韦小宝亲密值最高的两个。小宝的七个老婆，除双儿外，其他人都是靠死缠烂打忽悠到手的，都在不同程度上给小宝
+			   出过难题，让小宝大伤脑筋。双儿却不这样，一开始就全身心地投入。而苏荃为什么这个高，大概就是因为她年龄最大，颇有计谋与魄力，在她的老婆里
+			   面是作为领袖一般的存在，最重要的是，她最先有了韦小宝的孩子。</p>
+			   <img src="./luding/3.jpg" />
+			   <p  align="center">图3 各女主角与韦小宝的亲密值</p>
+			   <hr>
+			     <h2 id="section-4">韦小宝与康熙称谓的变化</h2>
+				 <p></p>
+				<ul>
+			   <li>从称谓信息上来看，因为韦小宝的起起落落总是与康熙密不可分。从图4我们可以看出，康熙皇帝最开始称谓最多的是小玄子，那时候他跟韦小宝是纯洁
+			   的友谊关系，而在韦小宝知道他是皇帝，并且开始为他做事之后，小玄子的称谓就没有了，因为这个时候他们更多的是皇帝与下属的关系，有了敬畏之心，
+			   而称谓也就基本是皇上了。而到了后期，韦小宝的实力得到成长，皇帝想杀他却也杀不了的时候，这个时候皇帝的称谓书中出现更多的是康熙，而小玄子也
+			   开始再次出现，因为韦小宝的实力得到了成长，成长到了皇帝控制不了他的程度，他也对皇帝没有了敬畏之心，所以小玄子又出现了。后期词频最高的皇帝
+			   哥哥都是建宁公主喊的。</li>
+			   <img src="./luding/4.jpg" />
+			   <p  align="center">图4 康熙皇帝的称谓变化</p>
+			   <li>韦小宝刚开始的称谓是小桂子，当时他还是作为一个皇上身边的心腹“小太监”，后来入了天地会才逐渐有了韦兄弟、韦香主等称呼，然后认识了双儿、阿
+			   珂等才有了韦大哥、相公等称呼，后来给皇帝立功升官有了韦爵爷的称呼，最后加神龙教，就有了“白龙使”的称呼。从这些称谓可以看出韦小宝从一个小人物
+			   逐渐蜕变成了不管在朝廷还是天地会还是神龙教都举足轻重的人物。</li>
+			   <img src="./luding/5.jpg" />
+			   <p  align="center">图5 韦小宝的称谓变化</p>
+			   </ul>
+			    <hr>
+			   <h2 id="section-5">词云图绘制</h2>
+			   <p>在这里我们进行一下分词处理，利用的是wordcloud2包进行绘制词云图。</p>
+			   <img src="./luding/7.jpg" />
+			   <p  align="center">图6 词云图</p>
+			   <hr>
+			   <h2 id="section-5">语义分析</h2>
+			   <p>将文本进行分词后，我们可以看看跟几个主角关系最近的都有什么词语。例如，跟“韦香主”相近的词有“青木堂众”、“天地会”等，因为韦小宝入天地会之后
+			   这都是跟他“韦香主”这个称谓有关的词语；跟“双儿”相近的词语就有“相公”、“亲个嘴儿”、“红着脸”等，因为双儿是韦小宝的随从跟爱人。与“康熙”有关的词汇
+			   就有“皇上”、“奴才”、“大臣”、“下旨”等有关的词汇。说明语义分析还是比较准确的。</p>
+			  <hr>
+			   <h2 id="section-6">层次文本聚类</h2>
+			   <p>进一步我们可以利用词向量结果来进行聚类（此处选择层次聚类）。根据图6我们可以分为四类，建宁公主与康熙是兄妹俩，然后同是皇室的人，可以归为一
+			   类；方怡、沐剑屏是师姐妹，可以归为一类；然后将除了建宁公主之外的女主角们分为一类，因为她们都是韦小宝的老婆；最后韦小宝跟他这些除了建宁公主之
+			   外的老婆们又可以分为一类，因为他们都是反朝廷的人。</p>
+			   <img src="./luding/6.jpg" />
+			   <p  align="center">图7 主角分词聚类</p>
+			   <hr>
+			   <h2 id="section-7">结论</h2>
+			   <p>通过以上分析我们可以精确地看出，跟韦小宝关系最密切的主角当属双儿了，无论从出场的顺序、出现的次数还是语义分析跟韦小宝的相关性，双儿都是韦小
+			   宝最密切的人。</p>
+			   </div>
+			   <div class="en post-container">
+			   <p>代码转载修改自统计之都<a href="http://cos.name/2016/06/r%e8%af%ad%e5%8d%83%e5%af%bb%e7%ac%ac%e4%b8%89%e6%9c%9f
+%ef%bc%9a%e5%bc%a0%e6%97%a0%e5%bf%8c%e7%a9%b6%e7%ab%9f%e7%88%b1%e8%b0%81%ef%bc%9f/#comment-7316">《r语千寻第三期：张无忌究竟爱谁？》</a></br>原文分析的是《倚天屠龙记》，
+我们仿照此做法分析的是《鹿鼎记》</p>
+<hr>
+<p>数据集：<a href="./luding/dataset.zip">dataset</a>下载</p>
+			   <figure class="highlight"><pre><code class="language-r" data-lang="r">#代码
+setwd("c:/data/")
+library(showtext)
+library(ggplot2)
+### read data
+luding = readLines("鹿鼎记.txt")
+luding[1:10]
+#### cut paragraph
+para_head = grep("^\\s+", luding)
+cut_para1 = cbind(para_head[1:(length(para_head)-1)], para_head[-1]-1)
+luding_para = sapply(1:nrow(cut_para1), function(i) paste(luding[cut_para1[i,1]:cut_para1[i,2]], collapse = ""))
+luding_para[1:4]
+#### read in main roles
+roles = readLines("主角名单.txt")
+roles[1:8]
+#### count roles
+roles1 = paste0("(", gsub(" ", ")|(", roles), ")")
+main_roles = c("双儿","建宁公主","方怡","沐剑屏","阿珂","曾柔","苏荃","韦小宝","康熙","吴三桂")
+role_para = sapply(roles1[1:10], grepl, luding_para)
+colnames(role_para) = main_roles
+role_count = data.frame(role = factor(colnames(role_para), 
+                        levels = c("双儿","建宁公主","方怡","沐剑屏","阿珂","曾柔","苏荃","韦小宝","康熙","吴三桂")), 
+                        count = colSums(role_para))
+showtext.auto(enable = T)
+X11()
+ggplot(role_count, aes(x = role, y = count, fill = role)) + 
+  geom_bar(stat = "identity", width = 0.75) + 
+  xlab("主角") +
+  ylab("次数") +
+  theme(axis.text=element_text(size=14, family = "wqy-microhei"),
+        axis.title=element_text(size=14,face="bold"),
+        axis.title.x = element_text(vjust=-2),
+        legend.position="none")
+#### show-up density
+role_para_df = data.frame(role = factor(rep(main_roles, colSums(role_para))), 
+                          para = which(role_para, arr.ind = T)[,1])
+role_para_df1 = role_para_df[is.element(role_para_df$role, c("双儿","建宁公主","方怡","沐剑屏","阿珂","曾柔","苏荃","韦小宝")),]
+ggplot(role_para_df1, aes(para, fill = role, colour = role))  + 
+  geom_density(aes(y = ..density..), alpha=0.2, size = 1) +
+  xlab("出场顺序") +
+  theme(plot.margin = unit(c(0,1,1,0), "cm"),
+        axis.text=element_text(size=14, family = "wqy-microhei"),
+        axis.title.x = element_text(vjust=-2),
+        axis.title=element_text(size=14,face="bold"))
+#### count common show-up
+colSums(role_para[,9]*role_para[,1:7])
+role_count1 = data.frame(role = factor(colnames(role_para)[1:7]), 
+                count = colSums(role_para[,9]*role_para[,1:7]))
+
+ggplot(role_count1, aes(x = role, y = count, fill = role)) + 
+  geom_bar(stat = "identity", width = 0.75) + 
+  xlab("主角") +
+  ylab("亲密值") +
+  theme(axis.text=element_text(size=14, family = "wqy-microhei"),
+        axis.title=element_text(size=14,face="bold"),
+        axis.title.x = element_text(vjust=-2),
+        legend.position="none")
+#### density of different names of one role 
+rolesl = strsplit(roles, " ")
+#### (1) 韦小宝,康熙皇帝将9改为8
+roles_para = sapply(rolesl[[9]], grepl, yitian_para)
+colnames(roles_para) = rolesl[[9]]
+roles_para_df = data.frame(role = factor(rep(colnames(roles_para), colSums(roles_para))), 
+                           para = which(roles_para>0, arr.ind = T)[,1])
+
+ggplot(roles_para_df, aes(para, fill = role, colour = role))  + 
+  geom_density(aes(y = ..density..), alpha=0.2, size = 1) + 
+  xlab("出现段落") + xlim(0, 4614)+ 
+  theme(plot.margin = unit(c(0,1,1,0), "cm"),
+        axis.text=element_text(size=17, family = "wqy-microhei"),
+        axis.title.x = element_text(vjust=-2),
+        axis.title=element_text(size=20,face="bold"))
+#### split words
+#install.packages("jiebaR")
+library(jiebaR)
+cutter = worker(bylines = TRUE, stop_word = "中文停词库.txt")
+new_user_word(cutter, unlist(rolesl), rep("n", length(unlist(rolesl)))) ### insert new words
+luding_words = cutter[luding_para]
+luding_words <-lapply(luding_words,function(x){
+  index <- nchar(x)>1
+  x[index]
+})
+luding_split = sapply(luding_words, paste, collapse = " ")
+writeLines(luding_split, "luding.txt")
+#将分词结果转化为向量
+myfile.words<- unlist(luding_words)
+#统计词频
+myfile.freq <- table(myfile.words)
+myfile.freq <- rev(sort(myfile.freq))
+myfile.freq <- data.frame(word=names(myfile.freq),freq=myfile.freq);
+names(myfile.freq)<-c("word","words","freq")
+word<-myfile.freq$word
+freq<-myfile.freq$freq
+myfile.freq <- data.frame(word,freq)
+fix(myfile.freq) 
+#导出分词结果
+write.table(myfile.freq,file="c:/data/分词结果.csv",quote=FALSE,sep=",")
+#绘制词云图
+#library(devtools)
+#devtools::install_github("lchiffon/wordcloud2")
+library(wordcloud2)
+#去掉韦小宝词
+myfile.freq<-myfile.freq[-1,]
+wordcloud2(myfile.freq,size = 2,fontFamily = "微软雅黑",color = "random-light", backgroundColor = "black")#install_github("bmschmidt/wordVectors")
+library(wordVectors)
+model = train_word2vec("luding.txt", output="luding.bin", 
+                        threads = 3, vectors = 100, window=12, force = T)
+vec = read.vectors("luding.bin")
+nearest_to(model,model[["韦小宝"]])
+nearest_to(model,model[["韦香主"]])
+nearest_to(model,model[["相公"]])
+nearest_to(model,model[["双儿"]])
+nearest_to(model,model[["建宁公主"]])
+nearest_to(model,model[["阿珂"]])
+nearest_to(model,model[["康熙"]])
+nearest_to(model,model[["小桂子"]])
+nearest_to(model,model[["曾柔"]])
+nearest_to(model,model[["鹿鼎公"]])
+nearest_to(model,model[["苏荃"]])
+nearest_to(model,model[["沐剑屏"]])
+nearest_to(model,model[["方怡"]])
+#聚类分析
+rr = sapply(rolesl, function(x) x[1])
+cos_dist = cosineDist(vec[rr],vec[rr])
+hc = hclust(as.dist(cos_dist), method = "average")
+plot(hc)
+
+</code></pre></figure>
+</div>
+			  
+<hr><ul class="tag_box list-unstyled list-inline"</ul></hr>
+				<p class="text-right">
+				<a href="./index1.html">MENBIN</a>
+				<span class="time">
+				<time><span class="label label-primary label-md"><strong>2016-07-09</strong></span></time>
+				</br>地点：中国--大连--东财
+				</span>
+				</p>	
+					<hr>					
+					<ul class="tag_box list-unstyled list-inline">
+					</ul>
+					<hr>
+                <!-- 多说 Share start -->
+				<div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="./blog/luding"
+                    data-title="文本挖掘技术初探"
+                    data-url="http://binmen.github.io/blog/luding"
+                    data-content="文本挖掘技术在文学作品中的应用" >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                <ul class="pager">
+                <!--如果可以向前翻页，<li class="previous  disabled"><a href=" " data-toggle="tooltip" data-placement="top" title="">-->
+					<li class="previous"><a href="./wordcloud2.html" data-toggle="tooltip" data-placement="top" title="Wordcloud2绘制词云图">Previous</br>Wordcloud2绘制词云图</a></li>
+		            <li class="next  disabled"><a>Next</a></li>
+                </ul>
+
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="./blog/luding"
+                        data-title="文本挖掘技术初探"
+                        data-url="http://binmen.github.io/blog/luding/" >
+                    </div>
+					
+                </div>
+                <!-- 多说评论框 end -->
+            </div>
+    </div>
+		<!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+           
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>友情链接</h5>
+                <ul class="list-inline">
+                    
+                       <li><a href="http://benmin.github.io/blog">数据泥瓦匠</a></li>
+                    
+                        <li><a href="https://github.com/Huxpro/huxpro.github.io">Hux-模板来源</a></li>
+                    
+                        <li><a href="http://brucezhaor.github.io/">brucezhaor</a></li>
+						
+						<li><a href="http://binmen.github.io/Simple">团队作品</a></li>
+                    
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+
+    var _user = 'menbin';
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options.placement = 'left';
+        anchors.add('h2,h3');
+		anchors.remove('.subheading');
+    })
+</script>
+
+
+<!-- mathjax -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+<!-- for R highlight -->
+<script type="text/javascript" src="./js/r-highlight.js"></script>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                 <!--站长统计-->
+                 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259231356'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259231356%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	 
+                <p class="copyright text-muted">
+                   &copy;2016. MenBin Copyright Reserved. | Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://www.bootcss.com/">Bootstrap</a>.Theme by <a href="http://huangxuan.me">Hux</a> and <a href="http://brucezhaor.github.io/">brucezhaor</a>.
+					<br>
+					<span class="label label-primary label-md"><strong>转载请标明作者和出处</strong></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/blog.js"></script>
+	
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+	
+	<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);  
+    })
+</script>
+
+<!-- back-to-top -->
+<div id="back-top">
+  <a href="#section" data-toggle="tooltip" data-placement="top" title="top">
+	<i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script>
+	$('#back-top').hide();
+	$(document).ready(function () {
+	$(window).scroll(function () {
+    if ($(this).scrollTop() > 250) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+<!-- 代码以及文字显示器-->
+<script type="text/javascript">
+    // get nodes
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    var $select = document.querySelector("select");
+
+    // bind hashchange event
+    window.addEventListener('hashchange', _render);
+
+    // handle render
+    function _render(){
+        var _hash = window.location.hash;
+        // en
+        if(_hash == "#en"){
+            $select.selectedIndex = 1;
+            $en.style.display = "block";
+            $zh.style.display = "none";
+        // zh by default
+        }else{
+            // not trigger onChange, otherwise cause a loop call.
+            $select.selectedIndex = 0;
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }
+    }
+
+    // handle select change
+    function onLanChange(index){
+        if(index == 0){
+            window.location.hash = "#zh"
+        }else{
+            window.location.hash = "#en"
+        }
+    }
+
+    // init
+    _render();
+</script>
+<script src="https://cdn1.lncld.net/static/js/av-mini-0.6.10.js"></script>
+<script src="http://jerry-cdn.b0.upaiyun.com/hit-kounter/hit-kounter-lc-0.2.0.js"></script>	
+</body>
+</html>
