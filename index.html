@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN"> 
 <head>
-	<meta charset="utf-8">
+<meta charset="utf-8">
 	<title>BIN MEN'S Blog | 数据泥瓦匠 </title>
 	<meta name="description" content="没有文艺范的数据挖掘工">
 	<meta name="author" content="">
@@ -11,326 +11,318 @@
 	<!-- 国产高速渲染 -->
 	<meta name="renderer" content="webkit">
 	<link rel="shortcut icon" href="./img/favicon.ico">	
-	<link rel="canonical" href="/">
-	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
-	<!-- Le styles -->
-	<link href="./css/bootstrap.min.css" rel="stylesheet">
-	<link href="./css/font-awesome.min.css" rel="stylesheet">
-	<link href="./css/syntax.css" rel="stylesheet">
-	<link href="./css/style.css" rel="stylesheet">
+	 <link href="./js/video-js.css" rel="stylesheet" type="text/css">
+    <script src="video.js"></script>
+    <script>
+    videojs.options.flash.swf = "video-js.swf";
+    </script>
+    <link rel="stylesheet prefetch" href="http://fonts.useso.com/css?family=Raleway:300">
+    <style type="text/css">
+*{margin:0;padding:0;}
 
+.slideshow {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slideshow-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: no-repeat 50% 50%;
+  background-size: cover;
+  -webkit-animation-name: kenburns;
+          animation-name: kenburns;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-duration: 16s;
+          animation-duration: 16s;
+  opacity: 1;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+.slideshow-image:nth-child(1) {
+  -webkit-animation-name: kenburns-1;
+          animation-name: kenburns-1;
+  z-index: 3;
+}
+.slideshow-image:nth-child(2) {
+  -webkit-animation-name: kenburns-2;
+          animation-name: kenburns-2;
+  z-index: 2;
+}
+.slideshow-image:nth-child(3) {
+  -webkit-animation-name: kenburns-3;
+          animation-name: kenburns-3;
+  z-index: 1;
+}
+.slideshow-image:nth-child(4) {
+  -webkit-animation-name: kenburns-4;
+          animation-name: kenburns-4;
+  z-index: 0;
+}
+
+@-webkit-keyframes kenburns-1 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  1.5625% {
+    opacity: 1;
+  }
+  23.4375% {
+    opacity: 1;
+  }
+  26.5625% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  98.4375% {
+    opacity: 0;
+    -webkit-transform: scale(1.21176);
+            transform: scale(1.21176);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes kenburns-1 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  1.5625% {
+    opacity: 1;
+  }
+  23.4375% {
+    opacity: 1;
+  }
+  26.5625% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  98.4375% {
+    opacity: 0;
+    -webkit-transform: scale(1.21176);
+            transform: scale(1.21176);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes kenburns-2 {
+  23.4375% {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  26.5625% {
+    opacity: 1;
+  }
+  48.4375% {
+    opacity: 1;
+  }
+  51.5625% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+@keyframes kenburns-2 {
+  23.4375% {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  26.5625% {
+    opacity: 1;
+  }
+  48.4375% {
+    opacity: 1;
+  }
+  51.5625% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+@-webkit-keyframes kenburns-3 {
+  48.4375% {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  51.5625% {
+    opacity: 1;
+  }
+  73.4375% {
+    opacity: 1;
+  }
+  76.5625% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+@keyframes kenburns-3 {
+  48.4375% {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  51.5625% {
+    opacity: 1;
+  }
+  73.4375% {
+    opacity: 1;
+  }
+  76.5625% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+@-webkit-keyframes kenburns-4 {
+  73.4375% {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  76.5625% {
+    opacity: 1;
+  }
+  98.4375% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes kenburns-4 {
+  73.4375% {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  76.5625% {
+    opacity: 1;
+  }
+  98.4375% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+
+h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+  z-index: 99;
+  text-align: center;
+  font-family: Raleway, sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 1em 2em -1em rgba(0, 0, 0, 0.5);
+  padding: 1em 2em;
+  line-height: 1.5;
+}
+h1 small {
+  display: block;
+  text-transform: lowercase;
+  font-size: .7em;
+}
+h1 small:first-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  padding-bottom: .5em;
+}
+h1 small:last-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  padding-top: .5em;
+}
+a{text-decoration:none} 
+</style>
 </head>
-<body ontouchstart="">
-	<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="http://binmen.github.io/blog">MENBIN</a>
-        </div>
-
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="./index.html">Home</a></li>
-					<li><a href="./categories.html">Categories</a></li>
-					<li><a href="">Tags</a></li>
-					<li><a href="./About.html">About Me</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
-	
-	var __HuxNav__ = {
-        close: function(){
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        },
-        open: function(){
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-    // Bind Event
-    $toggle.addEventListener('click', function(e){
-        if ($navbar.className.indexOf('in') > 0) {
-            __HuxNav__.close()
-        }else{
-            __HuxNav__.open()
-        }
-    })
-    /**
-     * Since Fastclick is used to delegate 'touchstart' globally
-     * to hack 300ms delay in iOS by performing a fake 'click',
-     * Using 'e.stopPropagation' to stop 'touchstart' event from 
-     * $toggle will break global delegation.
-     * 
-     * Instead, we use a 'e.target' filter to prevent handler
-     * added to document close HuxNav.  
-	 *
-	 * Also, we use 'click' instead of 'touchstart' as compromise
-     */
-    document.addEventListener('click', function(e){
-        if(e.target == $toggle) return;
-        if(e.target.className == 'icon-bar') return;
-        __HuxNav__.close();
-    })
-</script>
-	<!-- Page Header -->
-<header class="intro-header" style="background-image: url('img/home-bg.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>MEN  BIN'S Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">没有文艺范的数据挖掘工</span>
-					<ul class="list-inline">
-	
-                    </ul>
-                 
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-    		<div class="post-preview">
-			<!--第0篇-->
-	 <a href="./wordcloud2.html">
-        <h2 class="post-title">
-           Wordcloud2绘制词云图</span>
-        </h2>
-        <h3 class="post-subtitle">
-           Wordcloud2让你的词云图更加绚烂
-        </h3>
-        <div class="post-content-preview">   
-        Wordcloud2可以让你随心所有的绘制各种形状的词云图，让你的词云图不再单调。
-        </div>
-    </a>
-	<p class="post-meta">
-        Posted by MenBin on June 17, 2016
-    </p>
-	</div>
-	<hr>
-<!--第一篇-->
-<div class="post-preview">
-	 <a href="./javaR.html">
-        <h2 class="post-title">
-           Java与R的互相调用</span>
-        </h2>
-        <h3 class="post-subtitle">
-           Java基于R开发小软件的教程
-        </h3>
-        <div class="post-content-preview">   
-        Java作为主流的软件开发语言，R作为主流的统计软件，两者之间互相碰撞会擦出什么样的火花呢？本文告诉你...  
-        </div>
-    </a>
-	<p class="post-meta">
-        Posted by MenBin on June 06, 2016
-    </p>
-	</div>
-	<hr>
-<div class="post-preview">
-<!--第2篇-->
-	 <a href="./echarts.html">
-        <h2 class="post-title">
-            在网页中使用Echarts绘图</span>
-        </h2>
-        <h3 class="post-subtitle">
-            在网页中插入绚丽多彩的统计图表，让你的演示更加完美
-        </h3>
-        <div class="post-content-preview">   
-        绚丽多彩的图表，让你的网页不再单调，让你的演示更加完美。   
-        </div>
-    </a>
-	<p class="post-meta">
-        Posted by MenBin on May 24, 2016
-    </p>
-	</div>
-	<hr>
-<!--第3篇-->
-<div class="post-preview">
-	 <a href="./biaobai.html">
-        <h2 class="post-title">
-            “5.20” 程序员这样表白<span class="label label-success">转载</span>
-        </h2>
-        <h3 class="post-subtitle">
-            使用R绘制浪漫的心形图，可以根据自己的需要定制文字，有没有心动
-	   </h3>
-        <div class="post-content-preview">   
-        关于心形线的由来：1650年，斯德哥尔摩街头，一个宁静的午后，笛卡尔邂逅了18岁的瑞典公主克里斯汀。
-        机遇巧合，一段纯粹、美好的爱情悄然萌发...   	   
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by MenBin on May 20, 2016
-    </p>
-	</div>
-<hr>
-		
-<!-- Pager -->
-<ul class="pager"> 
-  <li>
-    <span class="page_number">Page: 1 OF 2</span>
-  </li>
-  <li class="previous  disabled"><a>&larr; New</a></li>
-  <li class="next"><a href="./index_2.html">Older &rarr;</a>
-  </li>
-</ul>
-
-    		</div>
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container">
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-						<h5>今日天气</h5>
-						<!--天气预报-->
-                        <iframe name="sinaWeatherTool" src="http://weather.news.sina.com.cn/chajian/iframe/weatherStyle32.html?city=%E5%A4%A7%E8%BF%9E" 
-						width="200" height="145" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe>
-						<hr>
-						<h5><a href="./About.html">ABOUT ME</a></h5>
-                         <div class="short-about">
-                        
-                            <img src="./img/me.jpg" />
-
-                            <p>大数据时代的弄潮儿</p>
-                        <ul class="list-inline">	
-                        </ul>
-                    </div>
-                </section>
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>友情链接</h5>
-                <ul class="list-inline">
-                    
-                        <li><a href="http://benmin.github.io/blog">数据泥瓦匠</a></li>
-                    
-                        <li><a href="https://github.com/Huxpro/huxpro.github.io">Hux-模板来源</a></li>
-                    
-                        <li><a href="http://brucezhaor.github.io/">brucezhaor</a></li>
-						
-						<li><a href="http://binmen.github.io/Simple">团队作品</a></li>
-                    
-                        
-                    
-                </ul>
-                
-    		</div>
-	</div>
+<body>
+<h1><small><a href="./index1.html"><font face="微软雅黑">MENBIN'S BLOG</font></a></small><small><font face="微软雅黑">没有文艺范的数据挖掘工</font></smaall></h1>
+<div class="slideshow">
+	<div class="slideshow-image" style="background-image: url('img/1.jpg')"></div>
+	<div class="slideshow-image" style="background-image: url('img/2.jpg')"></div>
+	<div class="slideshow-image" style="background-image: url('img/3.jpg')"></div>
+	<div class="slideshow-image" style="background-image: url('img/4.jpg')"></div>
 </div>
-
-	
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    
-         
-                <p class="copyright text-muted">
-				    <!--站长统计-->
-                    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259231356'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259231356%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	 
-                    &copy;2016. MenBin Copyright Reserved. | Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://www.bootcss.com/">Bootstrap</a>.Theme by <a href="http://huangxuan.me">Hux</a> and <a href="http://brucezhaor.github.io/">brucezhaor</a>.
-					<br>
-					<span class="label label-primary label-md"><strong>转载请标明作者和出处</strong></span>
-                </p>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<script type="text/javascript" src="./js/jquery.min.js"></script>
-<script type="text/javascript" src="./js/bootstrap.min.js"></script>
-<script type="text/javascript" src="./js/blog.js"></script>
-	
-<!-- async load function -->
+<script src="./js/jquery.js"></script><a class="mscBtn" id="audioBtn" title='终于等到你' style="cursor:pointer;"></a>
+<audio id="bgMusic" src="./download/music.mp3" autoplay="autoplay"></audio>
 <script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-	
-	<!--fastClick.js -->
-<script>
-    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-    FastClick.attach(document.body);  
-    })
-</script>
-<!--page views-->
-<script src="https://cdn1.lncld.net/static/js/av-mini-0.6.10.js"></script>
-<script src="http://jerry-cdn.b0.upaiyun.com/hit-kounter/hit-kounter-lc-0.2.0.js"></script>
-<!-- back-to-top -->
-<div id="back-top">
-  <a href="#section" data-toggle="tooltip" data-placement="top" title="top">
-	<i class="fa fa-chevron-up"></i>
-  </a>
-</div>
-<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
-<script>
-	$('#back-top').hide();
-	$(document).ready(function () {
-	$(window).scroll(function () {
-    if ($(this).scrollTop() > 250) {
-      $('#back-top').fadeIn();
-    } else {
-      $('#back-top').fadeOut();
-    }
-  });
-  $('#back-top a').click(function () {
-    $('body,html').animate({
-      scrollTop: 0
-    }, 800);
-    return false;
-  });
+var music = document.getElementById("bgMusic");
+var musicArr=[
+{url:'./download/music1.mp3',title:" "},
+{url:'./download/music2.mp3',title:" "},
+{url:'./download/music3.mp3',title:" "},
+{url:'./download/music.mp3',title:" "},
+];
+$("#audioBtn").click(function(){
+	if(music.paused){music.play();
+	$("#audioBtn").removeClass("pause").addClass("play");
+	}else{music.pause();
+	$("#audioBtn").removeClass("play").addClass("pause");}
+});
+$("#bgMusic").on('ended',function(){
+	var isone=$("#bgMusic").attr('src');
+	var noone=musicArr[parseInt(Math.random()*musicArr.length)];
+	if (noone.url==isone){var noone=musicArr[parseInt(Math.random()*musicArr.length)];}
+	$("#bgMusic").attr('src',noone.url);
+	$("#audioBtn").attr('title',noone.title);
 });
 </script>
-	
 </body>
 </html>
+

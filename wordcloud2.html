@@ -40,7 +40,7 @@
         <div id="huxblog_navbar">
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./index1.html">Home</a></li>
 					<li><a href="./categories.html">Categories</a></li>
 					<li><a href="">Tags</a></li>
 					<li><a href="./About.html">About Me</a></li>
@@ -175,36 +175,42 @@ wordcloud2(data = dataset)
 <h2 id="section-4">R语言绘制词云图案例--中文版</h2>
 <p><kbd>Dataset</kbd><a href="./download/dataset.zip">(sample)sam_tianchi_2014001_rec_tmall_product.csv</a>下载，数据来源天池实验室。</p>
 <figure class="highlight"><pre><code class="language-r" data-lang="r">#代码
+#原始数据导入
 data<-read.csv("H:/数据挖掘/数据挖掘作业/2016春硕/dataset/REC-TMALL/(sample)sam_tianchi_2014001_rec_tmall_product.csv",head=T)
-stw<-read.csv("H:/数据挖掘/数据挖掘作业/2016春硕/dataset/REC-TMALL/中文停词库.txt",header=T,stringsAsFactors=F)
-Sys.setenv(JAVA_HOME='C:\\Program Files (x86)\\Java\\jre7')
-library("stringr")
-#调入分词的库
-#install.packages("rJava")
-library(rJava) 
-#install.packages("Rwordseg")
-library("Rwordseg") 
-#数据去重
-data=unique(data)
-title<-data$title
-title <- title[title!=" "]
-title<-as.character(title) 
-#分词，并将分词结果转换为向量
-myfile.words <- unlist(lapply(X =title,FUN = segmentCN)) 
-#剔除URL等各种不需要的字符，还需要删除什么特殊的字符可以依样画葫芦在下面增加gsub的语句
-myfile.words <- gsub("[a-zA-Z\\/\\.0-9]","",myfile.words)
-stopwords_CN=c(NULL)
-#停词处理
-for(i in 1:dim(stw)[1]){
-stopwords_CN=c(stopwords_CN,stw[i,1])
-}
-for(j in 1:length(stopwords_CN)){
-myfile.words <- subset(myfile.words,myfile.words!=stopwords_CN[j])
-}
+library(stringr)
+#去除空格
+title<-str_split(data$title,' ')
+library(jiebaR)
+cutter=worker(stop_word ="H:/数据挖掘/数据挖掘作业/2016春硕/dataset/REC-TMALL/中文停词库.txt")
+#分词处理
+myfile.words <- lapply(title,function(x){
+  cutter <= x
+})
+#合并同概念的词
+myfile.words <-lapply(myfile.words,function(x){
+ x=gsub('秋款|秋冬装装|秋冬装装装|秋季|早秋','秋装',x,perl=T)
+ x=gsub('紧身','修身',x,perl=T)
+ x=gsub('冬季','冬装',x,perl=T)
+ x=gsub('秋冬季|秋冬','秋冬装',x,perl=T)
+ x=gsub('青少年','青年',x,perl=T)
+ x=gsub('韩潮|潮|男潮','韩版',x,perl=T)
+ x=gsub('jacket|夹克衫','夹克',x,perl=T)
+ x=gsub('mm|MM|女生|女士|女式|女款','女装',x,perl=T)
+ x=gsub('裤子|牛仔裤|长裤','裤子',x,perl=T)
+ x=gsub('打底','底裤',x,perl=T)
+ x=gsub('男士|中学生|男生|男式','男装',x,perl=T)
+ x=gsub('t恤|体恤|T恤|T恤衫','短袖',x,perl=T)
+ x=gsub('衬衣|长袖','衬衫',x,perl=T)
+ return(x)
+})
 #过滤掉1个字的词
-myfile.words<- subset(myfile.words,nchar(as.character(myfile.words))>1)
+myfile.words <-lapply(myfile.words,function(x){
+  index <- nchar(x)>1
+  x[index]
+})
+myfile.words <- unlist(myfile.words)
 #统计词频
-myfile.freq <- table(unlist(myfile.words))
+myfile.freq <- table((myfile.words))
 myfile.freq <- rev(sort(myfile.freq))
 myfile.freq <- data.frame(word=names(myfile.freq),freq=myfile.freq);
 names(myfile.freq)<-c("word","words","freq")
@@ -214,8 +220,8 @@ myfile.freq <- data.frame(word,freq)
 write.table(myfile.freq,file="c:/data/分词结果.csv",quote=FALSE,sep=",")
 fix(myfile.freq) 
 #绘制词云图
-#library(devtools)
 #安装wordcloud2最新包
+#library(devtools)
 #devtools::install_github("lchiffon/wordcloud2")
 library(wordcloud2)
 wordcloud2(myfile.freq, size = 1, fontFamily = "微软雅黑",color = "random-light", backgroundColor = "black")
@@ -262,7 +268,7 @@ letterCloud(dataset,word = "WORDCLOUD", size = 2,
 <img src="./img/wordcloud4.jpg" />
 <hr><ul class="tag_box list-unstyled list-inline"</ul></hr>
 				<p class="text-right">
-				<a href="./index.html">MENBIN</a>
+				<a href="./index1.html">MENBIN</a>
 				<span class="time">
 				<time><span class="label label-primary label-md"><strong>2016-06-17</strong></span></time>
 				</br>地点：中国--大连--东财
@@ -317,8 +323,7 @@ letterCloud(dataset,word = "WORDCLOUD", size = 2,
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 sidebar-container">
-
-
+           
                 <!-- Friends Blog -->
                 
                 <hr>
