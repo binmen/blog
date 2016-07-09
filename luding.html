@@ -10,7 +10,6 @@
 	<!-- 国产高速渲染 -->
 	<meta name="renderer" content="webkit">
 	<link rel="shortcut icon" href="./img/favicon.ico">	
-	<link rel="alternate" type="application/rss+xml" title="" href="./feed.xml">
 	<!-- Le styles -->
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/font-awesome.min.css" rel="stylesheet">
@@ -114,8 +113,7 @@
                     <h1>文本挖掘技术初探</h1>
                     <h2 class="subheading">文本挖掘技术在文学作品中的应用</h2>
                     <span class="meta">Posted by MenBin on Jul 9, 2016</span>
-					<p>&nbsp;&nbsp;&nbsp;&nbsp;<kbd>浏览量</kbd>&nbsp;&nbsp;&nbsp;&nbsp;<span data-hk-page="http://binmen.github.io/blog/luding/"> - </span>&nbsp;&nbsp;次</p>
-                </div>
+					</div>
             </div>
         </div>
     </div>
@@ -132,21 +130,20 @@
                 post-container">
 				<img src="./luding/0.jpg"/>
     			<h2 id="section">《鹿鼎记》简介</h2>
-               <blockquote><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;《鹿鼎记》是金庸先生最 《鹿鼎记》是金庸先生最 后一部小说，也是其登峰造极之作 一部小说，也是其登峰造极之作 。小说讲
-			   的是一 个从小在扬州妓院长大的孩 韦小宝，以不会任何武功之姿态闯荡江湖各大帮、 小宝，以不会任何武功之姿态闯荡江湖各大帮、 周旋皇帝
-			   朝臣之间 并奉旨远征云南、俄罗斯周旋皇帝朝臣之间 并奉旨远征云南、俄罗斯的故事 。金庸先生将韦小宝的个 人经历与史密切结合，大玩哈镜
-			   的手法令赞叹几乎信以为真而 人经历与史密切结合，大玩哈镜的手法令赞叹几乎信以为真而 人经历与史密切结合，大玩哈镜的手法令赞叹几乎信
-			   以为真而 人经历与史密切结合，大玩哈镜的手法令赞叹几乎信以为真而 人经历与史密切结合，大玩哈镜的手法令赞叹几乎信以为真而 小宝的做人
-			   方法及毫不留情处事式揭示生各阶层黑暗面这种，使得 小宝的做人方法及毫不留情处事式揭示生各阶层黑暗面这种，使得 这部书成了不是武侠小说 的。
+               <blockquote><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;《鹿鼎记》是金庸先生最后一部小说，也是其登峰造极之作 。小说讲
+			   的是一个从小在扬州妓院长大的孩子韦小宝，以不会任何武功之姿态闯荡江湖各大帮、周旋皇帝
+			   朝臣之间、并奉旨远征云南、俄罗斯的故事 。金庸先生将韦小宝的个人经历与历史密切结合，大玩哈镜的手法几乎信以为真，而小宝的做人
+			   方法及毫不留情处事式揭示社会各阶层黑暗面，使得这部书成了不是武侠小说的武侠小说。
 			   </p></blockquote>
 			   <hr>
+			   <p><code class="highlighter-rouge"><font face="微软雅黑">点击下面按钮可切换分析与代码</font></code></p>
 			   <select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
                 <option value="0" selected>文字分析</option>
                 <option value="1">代码分析</option>
                 </select>
 				<div class="zh post-container">
 			   <h2 id="section-1">人物分析</h2>
-			   <p>为了更好分析各主角重要度，我们统计各个主角出现的次数，从图1可以发现，出次数最多的当然是小说主人公韦小宝了，
+			   <p>为了更好分析各女主角重要程度，我们统计各个主角出现的次数，从图1可以发现，出次数最多的当然是小说主人公韦小宝了，
 			   其次是康熙皇帝，然后是建宁公主，双儿，沐剑屏、吴三桂、阿珂次之，方怡最少。这也直观的反映出了各主人公所处的地位以及重要性。</p>
 			   <img src="./luding/1.jpg" />
 			   <p  align="center">图1 各主角出现的次数</p>
@@ -195,7 +192,7 @@
 			   就有“皇上”、“奴才”、“大臣”、“下旨”等有关的词汇。说明语义分析还是比较准确的。</p>
 			  <hr>
 			   <h2 id="section-6">层次文本聚类</h2>
-			   <p>进一步我们可以利用词向量结果来进行聚类（此处选择层次聚类）。根据图6我们可以分为四类，建宁公主与康熙是兄妹俩，然后同是皇室的人，可以归为一
+			   <p>进一步我们可以利用词向量结果来进行聚类<code class="highlighter-rouge"><font face="微软雅黑">此处选择层次聚类</font></code>。根据图7我们可以分为四类，建宁公主与康熙是兄妹俩，然后同是皇室的人，可以归为一
 			   类；方怡、沐剑屏是师姐妹，可以归为一类；然后将除了建宁公主之外的女主角们分为一类，因为她们都是韦小宝的老婆；最后韦小宝跟他这些除了建宁公主之
 			   外的老婆们又可以分为一类，因为他们都是反朝廷的人。</p>
 			   <img src="./luding/6.jpg" />
@@ -358,7 +355,7 @@ plot(hc)
                     style="text-align: right"
                     data-thread-key="./blog/luding"
                     data-title="文本挖掘技术初探"
-                    data-url="http://binmen.github.io/blog/luding"
+                    data-url="http://binmen.github.io/blog/luding.html"
                     data-content="文本挖掘技术在文学作品中的应用" >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
@@ -386,7 +383,7 @@ plot(hc)
                     <div class="ds-thread"
                         data-thread-key="./blog/luding"
                         data-title="文本挖掘技术初探"
-                        data-url="http://binmen.github.io/blog/luding/" >
+                        data-url="http://binmen.github.io/blog/luding.html" >
                     </div>
 					
                 </div>
@@ -405,7 +402,7 @@ plot(hc)
                 <h5>友情链接</h5>
                 <ul class="list-inline">
                     
-                       <li><a href="http://benmin.github.io/blog">数据泥瓦匠</a></li>
+                       <li><a href="http://meoniher.github.io/index.html">Chen Jiahui's  Blog</a></li>
                     
                         <li><a href="https://github.com/Huxpro/huxpro.github.io">Hux-模板来源</a></li>
                     
