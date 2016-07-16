@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN"> 
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>CODE | MENBIN'S BLOG</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 国产高速渲染 -->
+	<meta name="renderer" content="webkit">
+	<link rel="shortcut icon" href="./img/favicon.ico">	
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushCSharp.js"></script>
+	<script type="text/javascript" src="scripts/shBrushPython.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="styles/shThemeMidnight.css"/>
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+		SyntaxHighlighter.all();
+	</script>
+</head>
+<body>
+<ul>
+<li style="font-size:18pt;"><font face="times new roman">getweather.py</font></li>
+</ul>
+<pre class="brush: py;">
+# -*- coding: UTF-8 -*-  
+from BeautifulSoup import BeautifulSoup    # For processing HTML  
+from bs4 import BeautifulSoup
+import re
+from urllib import urlopen  
+import sys
+from time import ctime
+reload(sys) 
+sys.setdefaultencoding('utf-8')  
+ 
+class WeatherInfo:  
+    """Weather class"""  
+    def __init__(self,site):  
+        self.site = site  
+        return  
+      
+    def getweather(self):  
+        """Get the weather information from the Internet"""  
+        text = urlopen(self.site).read()    #Get the source code of the site  
+        soup = BeautifulSoup(text)    #Get the soup  
+        city = soup.find(class_ = 'bi_loaction_city')   # 城市名称
+        aqi = soup.find("a",{"class","bi_aqiarea_num"})  # AQI指数
+        quality = soup.find("p",class_='bi_aqiarea_right')  # 空气质量等级
+        result = soup.find("div",class_ ='bi_aqiarea_bottom')   # 空气质量描述
+        tianqi = soup.find("p",class_='bi_info_weather')
+        tim= re.compile('数据来源：中国环境监测总站&nbsp;&nbsp;&nbsp;&nbsp;最后更新：(.*)</p>')
+        img1= re.compile('src="http://p1.qhimg.com/d/_hao360/weather/(.*)png" title=')
+        a = city.get_text()
+        b = aqi.get_text()
+        c=quality.get_text()
+        cc='空气质量等级'+c
+        d = result.get_text()
+        e=tianqi.get_text()
+        timee= tim.findall(text)[0]
+        time=u'更新时间： '+timee
+        img2= img1.findall(text)[0]
+        weather=[a,img2,time,d,cc,b,e]
+        return  weather  
+if __name__ == '__main__':
+    myWeather = WeatherInfo('http://www.pm25.com/dalian.html')
+    myWeather.getweather()
+</pre>
+<ul>
+<li style="font-size:18pt;"><font face="times new roman">myframe.py</font></li>
+</ul>
+<pre class="brush: py;">
+#! /usr/bin/env python
+#coding=utf-8
+import wx
+from GetWeather import WeatherInfo
+ 
+#todayInfo=u"12月8日星期四 小雨转多云7℃/-1℃ 北风5-6级 img/07.gif img/01.gif".split()
+#daysInfo=[todayInfo,todayInfo,todayInfo,todayInfo]
+        
+class MyApp(wx.App):
+    """应用程序类wx.App的子类"""
+    def __init__(self, title, sText):    #重构构造方法，其中title、sText分别是传递给主窗口的标题参数和状态栏参数
+        wx.App.__init__(self)   #调用wx.App的构造方法
+        frame = MyFrame(title, sText)   #创建主窗口对象
+        frame.Show(True)    #显示主窗口
+        
+class MyFrame(wx.Frame):
+    def __init__(self, title, sText):
+        wx.Frame.__init__(self, None, -1, title=title, size=(500,500))
+        self.panel = wx.Panel(self)
+        stBar = self.CreateStatusBar()  #创建状态栏
+        stBar.SetStatusText(sText)  #状态栏显示发布时间
+     
+        hdLeft = self.LayoutHeadLeft(todayInfo)
+        hdRight = self.LayoutHeadRight()
+        head = self.LayoutHead(hdLeft, hdRight)
+        days = self.LayoutDaysWeather(daysInfo)
+        sizer = self.LayoutPanel(head,days)
+        
+        self.panel.SetSizer(sizer)
+        sizer.Fit(self)
+        sizer.SetSizeHints(self)
+        
+    def LayoutHeadLeft(self, todayInfo):
+        tLbl = wx.StaticText(self.panel, -1, label=todayInfo)
+        
+        #从文件载入图像
+        img1 = wx.Image("C:/Users/Administrator/Desktop/TIANQI/img/a_" +todayInfoo+"gif",wx.BITMAP_TYPE_GIF)
+       
+        
+        #转换为静态图像控件
+        sb1 = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(img1))
+        
+        
+        #使用GridBagSizer来放置两个图片和两个文本控件
+        GBSizer = wx.GridBagSizer(vgap=5, hgap=5)   #Grid之间水平、竖直方向间距都是5个像素
+        GBSizer.Add(sb1, pos=(0, 0), span=(1, 1), flag=0)   #天气图片1，放置在第1行第1列，占一行一列
+        
+        GBSizer.Add(tLbl, pos=(1, 0), span=(1, 2), flag=0)  #天气文字信息，放置在第2行第1列，占一行两列
+                
+        #再使用Static Box Sizer来放置上面的GridBagSizer
+        sbox = wx.StaticBox(self.panel, -1,u'天气情况')        
+        sbsizer = wx.StaticBoxSizer(sbox, wx.VERTICAL)
+        sbsizer.Add(GBSizer,0, wx.ALL, 2)
+        
+        return sbsizer
+    
+    def LayoutHeadRight(self):
+        tLbl = wx.StaticText(self.panel, -1, label=u'版权所有')
+        tLb2 = wx.StaticText(self.panel, -1, label=u'Powered BY MB')
+        GBSizer = wx.GridBagSizer(vgap=5, hgap=5)   #Grid之间水平、竖直方向间距都是5个像素
+        GBSizer.Add(tLbl, pos=(1, 0), span=(1, 1), flag=0)  #天气文字信息，放置在第2行第1列，占一行两列       
+        GBSizer.Add(tLb2, pos=(2, 0), span=(1, 1), flag=0)  #天气文字信息，放置在第2行第1列，占一行两列
+                
+        #再使用Static Box Sizer来放置上面的GridBagSizer
+        sbox = wx.StaticBox(self.panel, -1,'')        
+        sbsizer = wx.StaticBoxSizer(sbox, wx.VERTICAL)
+        sbsizer.Add(GBSizer,0, wx.ALL, 2)
+        
+        return sbsizer
+    def LayoutHead(self, headLeft,headRight):
+        
+        box = wx.BoxSizer(wx.HORIZONTAL)    #使用水平BoxSizer放置今日天气信息和3个按钮
+        box.Add(headLeft, 1, flag=wx.EXPAND)
+        box.Add(headRight, flag=wx.EXPAND)
+        
+        return box
+    def LayoutDayWeather(self, dayInfo):
+       
+        #两个静态文本控件
+        dLbl = wx.StaticText(self.panel, -1, label=dayInfo)
+       #wLbl=wx.StaticText(self.panel,-1,label=todayInfo[2])
+                
+        
+                
+        #使用GridBagSizer来放置两个图片和两个文本控件
+        GBSizer = wx.GridBagSizer(vgap=5, hgap=5)
+        GBSizer.Add(dLbl, pos=(0, 0), span=(2,2), flag=wx.EXPAND)
+        
+        
+        return GBSizer
+    
+    def LayoutDaysWeather(self, daysInfo):
+        """使用竖直方向的StaticBoxSizer放置未来4天的天气信息"""
+        sbox = wx.StaticBox(self.panel, -1, u"PM2.5情况")
+        sbsizer = wx.StaticBoxSizer(sbox, wx.VERTICAL)
+        for dayInfo in daysInfo:
+            sz = self.LayoutDayWeather(dayInfo)
+            sbsizer.Add(sz, flag=wx.EXPAND)
+        return sbsizer
+    
+    def LayoutPanel(self, head, days):
+        """使用竖直方向的BoxSizer放置窗口上半部分内容和下半部分内容"""
+        bsizer = wx.BoxSizer(wx.VERTICAL)
+        bsizer.Add(head, flag=wx.EXPAND)
+        bsizer.Add(days, flag=wx.EXPAND)
+        return bsizer
+
+
+if __name__ == "__main__":
+
+   
+    wInfo = WeatherInfo('http://www.pm25.com/dalian.html').getweather()
+    #发布时间
+    waysInfo =wInfo[5]
+    
+    wTitle = wInfo[0]   #天气预报
+    wTime = wInfo[2]    #发布时间
+    todayInfo = wInfo[6]
+    todayInfoo = wInfo[1]  #今日天气信息
+    daysInfo = wInfo[3:6]  
+    app = MyApp(wTitle, wTime)  #应用程序类的一个实例
+    app.MainLoop()  #进入主循环
+</pre>
+</html>
