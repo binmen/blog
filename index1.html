@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh-CN"> 
 <head>
-	<meta charset="utf-8">
-	<title>MENBIN'S Blog | 数据泥瓦匠 </title>
-	<meta name="description" content="没有文艺范的数据挖掘工">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<!-- Enable responsive viewport -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- 国产高速渲染 -->
-	<meta name="renderer" content="webkit">
-	<link rel="shortcut icon" href="./img/favicon.ico">	
-	<!-- Le styles -->
-	<link href="./css/bootstrap.min.css" rel="stylesheet">
-	<link href="./css/font-awesome.min.css" rel="stylesheet">
-	<link href="./css/syntax.css" rel="stylesheet">
-	<link href="./css/style.css" rel="stylesheet">
+<meta charset="utf-8">
+<title>MENBIN'S Blog | 数据泥瓦匠 </title>
+<meta name="description" content="没有文艺范的数据挖掘工">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Enable responsive viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 国产高速渲染 -->
+<meta name="renderer" content="webkit">
+<link rel="shortcut icon" href="./img/favicon.ico">
+<!-- Le styles -->
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/font-awesome.min.css" rel="stylesheet">
+<link href="./css/syntax.css" rel="stylesheet">
+<link href="./css/style.css" rel="stylesheet">
 
 </head>
 <body ontouchstart="">
-	<!-- Navigation -->
+<!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -36,9 +36,9 @@
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="./index.html">Home</a></li>
-					<li><a href="./categories.html">Categories</a></li>
-					<li><a href="">Tags</a></li>
-					<li><a href="./About.html">About Me</a></li>
+<li><a href="./categories.html">Categories</a></li>
+<li><a href="">Tags</a></li>
+<li><a href="./About.html">About Me</a></li>
                 </ul>
             </div>
         </div>
@@ -54,8 +54,8 @@
     var $toggle = document.querySelector('.navbar-toggle');
     var $navbar = document.querySelector('#huxblog_navbar');
     var $collapse = document.querySelector('.navbar-collapse');
-	
-	var __HuxNav__ = {
+
+var __HuxNav__ = {
         close: function(){
             $navbar.className = " ";
             // wait until animation end.
@@ -87,8 +87,8 @@
      * 
      * Instead, we use a 'e.target' filter to prevent handler
      * added to document close HuxNav.  
-	 *
-	 * Also, we use 'click' instead of 'touchstart' as compromise
+ *
+ * Also, we use 'click' instead of 'touchstart' as compromise
      */
     document.addEventListener('click', function(e){
         if(e.target == $toggle) return;
@@ -96,7 +96,7 @@
         __HuxNav__.close();
     })
 </script>
-	<!-- Page Header -->
+<!-- Page Header -->
 <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
     <div class="container">
         <div class="row">
@@ -105,8 +105,8 @@
                     <h1>MEN  BIN'S Blog</h1>
                     <!--<hr class="small">-->
                     <span class="subheading">没有文艺范的数据挖掘工</span>
-					<ul class="list-inline">
-	
+<ul class="list-inline">
+
                     </ul>
                  
                 </div>
@@ -117,36 +117,20 @@
 
 <!-- Main Content -->
 <div class="container">
-	<div class="row">
+<div class="row">
 <!-- USE SIDEBAR -->
     <!-- Post Container -->
-    		<div class="
+    <div class="
                 col-lg-8 col-lg-offset-1
                 col-md-8 col-md-offset-1
                 col-sm-12
                 col-xs-12
                 post-container
-            ">	
-	<div class="post-preview">
-	 <a href="">
-        <h2 class="post-title">
-           利用Python批量修改文件名</span>
-        </h2>
-        <h3 class="post-subtitle">
-           使用Python中的os模块进行批量修改文件的名称
-        </h3>
-        <div class="post-content-preview">   
-        在实际工作中，有时可能会遇到要修改文件名称的情况，这里我们介绍利用python中的os模块进行批量修改文件名称的方法
-        </div>
-    </a>
-	<p class="post-meta">
-        Posted by MenBin on Jul 16, 2016
-    </p>
-	</div>
-	<hr>
-			<!---1篇-->
-	<div class="post-preview">
-	 <a href="./luding.html">
+            ">
+<div class="post-preview"><a href="Rblog.html"><h2 class="post-title">利用R语言打造自己的博客编辑器</span></h2><h3 class="post-subtitle">R语言在博客编写中的应用</h3><div class="post-content-preview">利用R语言打造自己自己的博客编辑器，每次编写博客时只需要编辑博客正文内容以及标题，其余添加首页，分类页等工作自动生成；后续改进的是正文内容编辑不再需要各种标签以及自动化生成目录等，只需要特定
+符号即可，希望各位看官推荐一套比较简洁的符号，例如markdown里面的#，##，###等</div></a><p class="post-meta">Posted by MenBin on Aug 13 , 2016</p></div><hr>
+<div class="post-preview">
+ <a href="./luding.html">
         <h2 class="post-title">
            文本挖掘技术初探</span>
         </h2>
@@ -157,14 +141,14 @@
         文本挖掘技术探究《鹿鼎记》中韦小宝到底更偏爱谁？
         </div>
     </a>
-	<p class="post-meta">
+<p class="post-meta">
         Posted by MenBin on Jul 09, 2016
     </p>
-	</div>
-	<hr>
-			<!--第0篇-->
-			<div class="post-preview">
-	 <a href="./wordcloud2.html">
+</div>
+<hr>
+<!--第0篇-->
+<div class="post-preview">
+ <a href="./wordcloud2.html">
         <h2 class="post-title">
            Wordcloud2绘制词云图</span>
         </h2>
@@ -175,14 +159,14 @@
         Wordcloud2可以让你随心所有的绘制各种形状的词云图，让你的词云图不再单调。
         </div>
     </a>
-	<p class="post-meta">
+<p class="post-meta">
         Posted by MenBin on June 17, 2016
     </p>
-	</div>
-	<hr>
+</div>
+<hr>
 <!--第一篇-->
 <div class="post-preview">
-	 <a href="./javaR.html">
+ <a href="./javaR.html">
         <h2 class="post-title">
            Java与R的互相调用</span>
         </h2>
@@ -193,14 +177,14 @@
         Java作为主流的软件开发语言，R作为主流的统计软件，两者之间互相碰撞会擦出什么样的火花呢？本文告诉你...  
         </div>
     </a>
-	<p class="post-meta">
+<p class="post-meta">
         Posted by MenBin on June 06, 2016
     </p>
-	</div>
-	<hr>
+</div>
+<hr>
 <div class="post-preview">
 <!--第2篇-->
-	 <a href="./echarts.html">
+ <a href="./echarts.html">
         <h2 class="post-title">
             在网页中使用Echarts绘图</span>
         </h2>
@@ -211,31 +195,13 @@
         绚丽多彩的图表，让你的网页不再单调，让你的演示更加完美。   
         </div>
     </a>
-	<p class="post-meta">
+<p class="post-meta">
         Posted by MenBin on May 24, 2016
     </p>
-	</div>
-	<hr>
-<!--第3篇-->
-<div class="post-preview">
-	 <a href="./biaobai.html">
-        <h2 class="post-title">
-            “5.20” 程序员这样表白<span class="label label-success">转载</span>
-        </h2>
-        <h3 class="post-subtitle">
-            使用R绘制浪漫的心形图，可以根据自己的需要定制文字，有没有心动
-	   </h3>
-        <div class="post-content-preview">   
-        关于心形线的由来：1650年，斯德哥尔摩街头，一个宁静的午后，笛卡尔邂逅了18岁的瑞典公主克里斯汀。
-        机遇巧合，一段纯粹、美好的爱情悄然萌发...   	   
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by MenBin on May 20, 2016
-    </p>
-	</div>
+</div>
 <hr>
-		
+
+
 <!-- Pager -->
 <ul class="pager"> 
   <li>
@@ -246,7 +212,7 @@
   </li>
 </ul>
 
-    		</div>
+    </div>
     <!-- Sidebar Container -->
             <div class="
                 col-lg-3 col-lg-offset-0
@@ -256,24 +222,24 @@
                 sidebar-container">
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
-						<h5>今日天气</h5>
-						<hr>
-						<!--天气预报
+<h5>今日天气</h5>
+<hr>
+<!--天气预报
                         <iframe name="sinaWeatherTool" src="http://weather.news.sina.com.cn/chajian/iframe/weatherStyle32.html?city=%E5%A4%A7%E8%BF%9E" 
-						width="200" height="145" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe>-->
-					<iframe allowtransparency="true" frameborder="0" width="180" height="205" scrolling="no" src="http://tianqi.2345.com/plugin/widge
-					t/index.htm?s=2&z=1&t=0&v=1&d=2&bd=1&k=0080c0&f=0080c0&q=1&e=0&a=1&c=54511&w=142&h=205&align=center"></iframe>
-						<hr>
-						<h5><a href="./About.html">ABOUT ME</a></h5>
+width="200" height="145" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe>-->
+<iframe allowtransparency="true" frameborder="0" width="180" height="205" scrolling="no" src="http://tianqi.2345.com/plugin/widge
+t/index.htm?s=2&z=1&t=0&v=1&d=2&bd=1&k=0080c0&f=0080c0&q=1&e=0&a=1&c=54511&w=142&h=205&align=center"></iframe>
+<hr>
+<h5><a href="./About.html">ABOUT ME</a></h5>
                          <div class="short-about">
                         
                             <img src="./img/me.jpg" />
 
                             <p>大数据时代的弄潮儿</p>
-							<hr>
-							<h5><a href="">微信公账号</a></h5>
-							<img src="./img/wechat.jpg" />
-                        <ul class="list-inline">	
+<hr>
+<h5><a href="">微信公账号</a></h5>
+<img src="./img/wechat.jpg" />
+                        <ul class="list-inline">
                         </ul>
                     </div>
                 </section>
@@ -288,18 +254,18 @@
                         <li><a href="https://github.com/Huxpro/huxpro.github.io">Hux-模板来源</a></li>
                     
                         <li><a href="http://brucezhaor.github.io/">brucezhaor</a></li>
-						
-						<li><a href="http://binmen.github.io/Simple">团队作品</a></li>
+
+<li><a href="http://binmen.github.io/Simple">团队作品</a></li>
                     
                         
                     
                 </ul>
                 
-    		</div>
-	</div>
+    </div>
+</div>
 </div>
 
-	
+
 <!-- Footer -->
 <footer>
     <div class="container">
@@ -308,11 +274,11 @@
                     
          
                 <p class="copyright text-muted">
-				    <!--站长统计-->
-                    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259231356'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259231356%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	 
+    <!--站长统计-->
+                    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259231356'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259231356%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script> 
                     &copy;2016. MenBin Copyright Reserved. | Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://www.bootcss.com/">Bootstrap</a>.Theme by <a href="http://huangxuan.me">Hux</a> and <a href="http://brucezhaor.github.io/">brucezhaor</a>.
-					<br>
-					<span class="label label-primary label-md"><strong>转载请标明作者和出处</strong></span>
+<br>
+<span class="label label-primary label-md"><strong>转载请标明作者和出处</strong></span>
                 </p>
             </div>
         </div>
@@ -322,7 +288,7 @@
 <script type="text/javascript" src="./js/jquery.min.js"></script>
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./js/blog.js"></script>
-	
+
 <!-- async load function -->
 <script>
     function async(u, c) {
@@ -334,8 +300,8 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-	
-	<!--fastClick.js -->
+
+<!--fastClick.js -->
 <script>
     async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
     FastClick.attach(document.body);  
@@ -347,14 +313,14 @@
 <!-- back-to-top -->
 <div id="back-top">
   <a href="#section" data-toggle="tooltip" data-placement="top" title="top">
-	<i class="fa fa-chevron-up"></i>
+<i class="fa fa-chevron-up"></i>
   </a>
 </div>
 <script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
 <script>
-	$('#back-top').hide();
-	$(document).ready(function () {
-	$(window).scroll(function () {
+$('#back-top').hide();
+$(document).ready(function () {
+$(window).scroll(function () {
     if ($(this).scrollTop() > 250) {
       $('#back-top').fadeIn();
     } else {
@@ -369,6 +335,6 @@
   });
 });
 </script>
-	
+
 </body>
 </html>
