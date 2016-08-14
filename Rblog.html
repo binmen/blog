@@ -121,13 +121,22 @@ background-image: url('./img/  ')
                 col-md-10 col-md-offset-1
                 post-container">
 <h2 id="section">写在前面的话</h2>
-<p>以前写blog时，宝宝的心中是拒绝的，完成一篇blog需要修改好多地方，首先
-首页需要添加标题以及链接，然后还要将文章添加进入categories，还要修改前
-一篇文章的NEXT文章按钮，最后还要进行各种的设置；总之，宝宝的心情是很不
-爽的，后来，在痛定思痛之下，宝宝决定自己打造blog编辑器，每次编写时只需要
-制作正文即可，其他都会自动生成！例如添加此网页<kbd>仅需要做的工作</kbd>就是编辑以
-下内容:</p>
-  <img src="./img/rblog.jpg" />
+<ul>
+<li>以前写blog时，宝宝的心中是酱紫的</li>
+<img src="./img/moji.jpg" />
+<li>完成一篇blog需要修改好多地方，首先需要在首页添加标题以及链接:</li>
+<img src="./img/shouye.jpg" />
+</li>然后还要将文章添加进入categories:</li>
+<img src="./img/cata.jpg" />
+<li>还要修改前一篇文章的NEXT文章按钮:</li>
+<img src="./img/next.jpg" />
+<li>最后还要进行各种的设置,例如多说的配置等等。</li>
+</ul>
+<p>总之，宝宝的心情是很不爽的，后来，在痛定思痛之下，宝宝
+决定自己打造blog编辑器，每次编写时只需要制作正文即可，其他都会自动生成！
+例如生成本网页<kbd>仅需要做的工作</kbd>就是编辑以下内容:</p>
+<img src="./img/rblog.jpg" />
+<p>这样就会简化大部分的工作，就像发布微博一样发布博客</p>
 <h2 id="section-1">思路分析</h2>
 <ul>
 <p>对首页进行的处理</p>
@@ -141,13 +150,14 @@ background-image: url('./img/  ')
 <p>对前一篇文章的处理;（此处可以建立个文章列表，方便确定下一篇文件名称）</p>
 <li>第一步：首先利用正则表达式找到{点击进入下一篇}的语句，然后进行删除，利用已经写好的语句进行替换</li>
 <p>对新添加文章的网页处理</p>
-<li>首先建立个模板，模板不可改变，然后将模板进行修改即可</li>
-<li>最后将所有内容合并起来</li>
+<li>首先建立个模板，模板可根据需要自己改变，然后将模板进行修改即可，这是我的模板</li>
+<img src="./img/rblogmuban.jpg" />
+<li>最后将所有内容合并起来就可以生成一篇博文了。</li>
 </ul>
 <h2 id="section-2">基本思想</h2>
 <p>本程序的核心就是利用正则表达式以及paste、gsub函数对数据进行处理，然后将文章进行拼接即可。</p>
 <h2 id="section-3">改进想法</h2>
-<p>后续的改进就是创建自己的一套符号，不在使用原来的p,li,ul等，简化代码</p>
+<p>后续的改进就是创建自己的一套符号，不在使用原来的p,li,ul等，简化代码，然后添加自动生成目录的方法，基本思想还是利用正则表达式。</p>
 <p>所有代码：<a href="./download/Rblog.zip">Rblog</a>下载</p>
 <hr><ul class="tag_box list-unstyled list-inline"</ul></hr>
 <p class="text-right">
@@ -214,7 +224,7 @@ data-url="http://binmen.github.io/blog/Rblog.html"
                     
                         <li><a href="https://github.com/Huxpro/huxpro.github.io">Hux-模板来源</a></li>
                     
-                        <li><a href="http://brucezhaor.github.io/">brucezhaor</a></li>
+                        <li><a href="http://brucezhaor.github.io/"> BruceZhaoR</a></li>
 
 <li><a href="http://binmen.github.io/Simple">团队作品</a></li>
                     
@@ -285,7 +295,7 @@ anchors.remove('.subheading');
                  <!--站长统计-->
                  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259231356'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259231356%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script> 
                 <p class="copyright text-muted">
-                   &copy;2016. MenBin Copyright Reserved. | Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://www.bootcss.com/">Bootstrap</a>.Theme by <a href="http://huangxuan.me">Hux</a> and <a href="http://brucezhaor.github.io/">brucezhaor</a>.
+                   &copy;2016. MenBin Copyright Reserved. | Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://www.bootcss.com/">Bootstrap</a>.Theme by <a href="http://huangxuan.me">Hux</a> and <a href="http://brucezhaor.github.io/"> BruceZhaoR</a>.
 <br>
 <span class="label label-primary label-md"><strong>转载请标明作者和出处</strong></span>
                 </p>
