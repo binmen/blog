@@ -1,0 +1,67 @@
+/* 去除div区域与浏览器之间的边界 */
+body{
+	margin:0px;
+	padding:0px;
+}
+
+/* 最外层的div区域，里面有一个轮播区域 */
+#homepage {
+	width:100%;
+	height:500px;
+	background-color:#E8E8FF;
+}
+
+/* 轮播区域 */
+.carousel {
+	/* 设置显示区域的宽度和高度 */
+	width:600px;
+	height:300px;
+	/* 隐藏溢出的内容 */
+	overflow:hidden; 
+	
+	/* 居中显示这个div区域 */
+	position:relative;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	
+	/*background-color:black;	 完成轮播时删除 */
+}
+
+/* 轮播内容的集合 */
+.carousel-set {
+	width:3000px;	/* 设置宽度为轮播内容宽度的总和 */
+	height:300px;	/* 轮播内容的高度 */
+	
+	/*background-color:blue;	 完成轮播时删除 */
+	
+	/* 提示：修改这个div的左侧外边距可以实现移动轮播内容 */
+	/* 应用动画 */
+	animation:playMovie 15s linear infinite;
+}
+
+/* 轮播的内容 */
+.carousel-content {
+	width:600px;
+	height:300px;
+	float:left;	/* 设置左浮动，让轮播内容排成一行 */
+}
+
+/* 轮播的内容中的<img>标签 */
+.carousel-content>img{
+	width:100%;
+	height:100%;
+}
+
+/* keyframes规则 */
+@keyframes playMovie {
+	0% {margin-left:0px;}
+	10% {margin-left:0px;}
+	20% {margin-left:-600px;}
+	40% {margin-left:-600px;}
+	50% {margin-left:-1200px;}
+	70% {margin-left:-1200px;}
+	80% {margin-left:-1800px;}
+	90% {margin-left:-1800px;}
+	100% {margin-left:-2400px;}
+}
